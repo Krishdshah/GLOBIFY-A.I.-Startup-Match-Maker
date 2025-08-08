@@ -57,6 +57,136 @@ nav ul li a {
   color: #3b82f6;
 }
 
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: #1F2937;
+}
+
+.hero {
+  padding: 60px 5%;
+  display: flex;
+  align-items: center;
+  background-color: #F9FAFB;
+}
+
+.hero-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.hero .text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.hero h1 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #1F2937;
+  line-height: 1.3;
+}
+
+.hero h1 span {
+  color: #0F172A;
+}
+
+.hero p {
+  margin-top: 15px;
+  color: #6B7280;
+  font-size: 16px;
+}
+
+.buttons {
+  margin-top: 25px;
+}
+
+.btn-primary {
+  background-color: #0F172A;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #0F172A;
+  padding: 12px 24px;
+  border: 1.5px solid #0F172A;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.hero-image {
+  flex: 1;
+  text-align: center;
+  min-width: 300px;
+}
+
+.hero-image img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.how-it-works {
+  background: #F3F4F6;
+  padding: 60px 5%;
+  text-align: center;
+}
+
+.how-it-works h2 {
+  font-size: 28px;
+  color: #1F2937;
+  margin-bottom: 10px;
+}
+
+.how-it-works .subtitle {
+  color: #6B7280;
+  margin-bottom: 40px;
+}
+
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.step {
+  background-color: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  width: 280px;
+  text-align: center;
+}
+
+.step img {
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+.step h3 {
+  font-size: 16px;
+  color: #1F2937;
+  margin-bottom: 10px;
+}
+
+.step p {
+  font-size: 14px;
+  color: #6B7280;
+}
+
 .how-it-works, .features, .pricing, .contact {
   padding: 3rem 2rem;
   text-align: center;

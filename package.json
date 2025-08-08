@@ -1,0 +1,18 @@
+{
+  "name": "globify",
+  "version": "1.0.0",
+  "description": "Founder and Investor connector",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/project-app.git"
+  },
+  "keywords": [],
+  "author": "Krish D Shah",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}
