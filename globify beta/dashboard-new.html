@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Globify - Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: var(--bg-charcoal);
+            color: var(--white-text);
+            min-height: 100vh;
+            margin: 0;
+            padding-top: 80px;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .dashboard-container {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header Section */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .globe-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gold-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-charcoal);
+            font-size: 1.5rem;
+        }
+
+        .header-text h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            color: var(--white-text);
+            margin: 0 0 0.5rem 0;
+            font-size: 1.8rem;
+        }
+
+        .header-text p {
+            color: var(--gray-light);
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .find-matches-btn {
+            background: var(--gold-primary);
+            color: var(--bg-charcoal);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .find-matches-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Main Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .dashboard-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+            border-color: var(--gold-primary);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--bg-charcoal);
+        }
+
+        .ai-powered-icon { background: var(--gold-primary); }
+        .industry-icon { background: #f39c12; }
+        .global-icon { background: #27ae60; }
+        .growth-icon { background: #e74c3c; }
+
+        .card-title {
+            color: var(--white-text);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .card-numbers {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .number-item {
+            text-align: center;
+        }
+
+        .number {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2rem;
+            color: var(--gold-primary);
+            display: block;
+        }
+
+        .number-label {
+            color: var(--gray-light);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .view-btn {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold-primary);
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--gold-primary);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            width: 100%;
+        }
+
+        .view-btn:hover {
+            background: var(--gold-primary);
+            color: var(--bg-charcoal);
+        }
+
+        /* Industry Progress Bars */
+        .industry-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .industry-name {
+            color: var(--white-text);
+            font-weight: 600;
+        }
+
+        .industry-percentage {
+            color: var(--gold-primary);
+            font-weight: 700;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gold-primary);
+            transition: width 0.3s ease;
+        }
+
+        .filter-btn {
+            background: var(--gold-primary);
+            color: var(--bg-charcoal);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        /* Global Reach Stats */
+        .global-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .global-stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--gold-primary);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--gray-light);
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+        }
+
+        .growth-chart {
+            height: 120px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            margin: 1rem 0;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        /* Chart Styles */
+        .chart-container {
+            height: 100px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            margin: 1rem 0;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 1rem;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: end;
+            height: 80px;
+            gap: 8px;
+            padding: 10px;
+        }
+
+        .bar {
+            background: linear-gradient(to top, var(--gold-primary), var(--bronze-secondary));
+            border-radius: 4px 4px 0 0;
+            min-width: 20px;
+            animation: growBar 2s ease-out forwards;
+            transform-origin: bottom;
+            transform: scaleY(0);
+        }
+
+        @keyframes growBar {
+            to { transform: scaleY(1); }
+        }
+
+        .pie-chart {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: conic-gradient(
+                var(--gold-primary) 0% 43%,
+                var(--bronze-secondary) 43% 71%,
+                rgba(255, 255, 255, 0.2) 71% 100%
+            );
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .pie-chart::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            background: var(--bg-charcoal);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .line-chart {
+            height: 80px;
+            position: relative;
+            padding: 10px;
+        }
+
+        .line-chart svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .chart-legend {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 0.5rem;
+            font-size: 0.7rem;
+            color: var(--gray-light);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .legend-color {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        /* Bottom Section */
+        .bottom-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .section-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .section-card:hover {
+            border-color: var(--gold-primary);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--bg-charcoal);
+        }
+
+        .events-icon { background: #f39c12; }
+        .insights-icon { background: #e67e22; }
+        .communication-icon { background: #2ecc71; }
+
+        .section-title {
+            color: var(--white-text);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .event-item, .insight-item, .message-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .event-item:hover, .insight-item:hover, .message-item:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateX(5px);
+        }
+
+        .event-date, .insight-badge {
+            background: var(--gold-primary);
+            color: var(--bg-charcoal);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .event-info h4, .message-info h4 {
+            color: var(--white-text);
+            margin: 0 0 0.3rem 0;
+            font-size: 0.9rem;
+        }
+
+        .event-info p, .message-info p {
+            color: var(--gray-light);
+            margin: 0;
+            font-size: 0.8rem;
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .message-time {
+            color: var(--bronze-secondary);
+            font-size: 0.8rem;
+            margin-left: auto;
+        }
+
+        .view-all-btn {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold-primary);
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--gold-primary);
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .view-all-btn:hover {
+            background: var(--gold-primary);
+            color: var(--bg-charcoal);
+        }
+
+        /* Navigation Styles */
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-icon {
+            position: relative;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .nav-icon:hover {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: var(--gold-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .nav-icon i {
+            color: var(--white-text);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-icon:hover i {
+            color: var(--gold-primary);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--bg-charcoal);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.5rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .user-profile:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--gold-primary);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--gold-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--bg-charcoal);
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-name {
+            color: var(--white-text);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .user-title {
+            color: var(--gray-light);
+            font-size: 0.8rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 2rem;
+        }
+
+        .nav-menu li a {
+            color: var(--gray-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu li a:hover {
+            color: var(--gold-primary);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .main-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .bottom-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-header {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .nav-actions {
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .user-info {
+                display: none;
+            }
+
+            header nav {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo" onclick="window.location.href='/beta'" style="cursor: pointer;">
+                <img src="assets/logo.gif" alt="Globify Logo" class="logo-image" />
+                <span class="logo-text">Globify</span>
+            </div>
+            <div class="nav-actions">
+                <div class="nav-icons">
+                    <div class="nav-icon" id="notificationsIcon" title="Notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="nav-icon" id="messagesIcon" title="Messages">
+                        <i class="fas fa-envelope"></i>
+                        <span class="notification-badge">5</span>
+                    </div>
+                </div>
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <span>D</span>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name">Deepansh</span>
+                        <span class="user-title">Startup Founder</span>
+                    </div>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/beta/dashboard-new.html">Dashboard</a></li>
+                <li><a href="#matches">Matches</a></li>
+                <li><a href="#messages">Messages</a></li>
+                <li><a href="#profile">Profile</a></li>
+                <li><a href="/beta/index.html" style="color: var(--bronze-secondary);">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Header Section -->
+        <div class="dashboard-header">
+            <div class="header-left">
+                <div class="globe-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <div class="header-text">
+                    <h1>Empowering global partnerships</h1>
+                    <p>Matching UN SDG for sustainable industry, innovation, and infrastructure</p>
+                </div>
+            </div>
+            <a href="/beta/connectpro.html" class="find-matches-btn">
+                <i class="fas fa-search"></i>
+                Find New Matches
+            </a>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="main-grid">
+            <!-- AI-Powered Matches -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon ai-powered-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="card-title">AI-Powered Matches</h3>
+                </div>
+                <div class="card-numbers">
+                    <div class="number-item">
+                        <span class="number">12</span>
+                        <div class="number-label">New Matches</div>
+                    </div>
+                    <div class="number-item">
+                        <span class="number">5</span>
+                        <div class="number-label">Strong Compatibility</div>
+                    </div>
+                </div>
+                <button class="view-btn">View Matches</button>
+            </div>
+
+            <!-- Industry Matchmaking -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon industry-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3 class="card-title">Industry Matchmaking</h3>
+                </div>
+                <div class="pie-chart"></div>
+                <div class="chart-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--gold-primary);"></div>
+                        <span>Tech (43%)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--bronze-secondary);"></div>
+                        <span>Fintech (28%)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: rgba(255, 255, 255, 0.3);"></div>
+                        <span>Others (29%)</span>
+                    </div>
+                </div>
+                <button class="filter-btn">Filter Industries</button>
+            </div>
+
+            <!-- Global Reach -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon global-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3 class="card-title">Global Reach</h3>
+                </div>
+                <div class="chart-container">
+                    <div class="bar-chart">
+                        <div class="bar" style="height: 85%;" title="Countries: 42"></div>
+                        <div class="bar" style="height: 45%;" title="Industries: 18"></div>
+                        <div class="bar" style="height: 76%;" title="Success: 76%"></div>
+                        <div class="bar" style="height: 60%;" title="Growth: 32%"></div>
+                    </div>
+                </div>
+                <div class="global-stats">
+                    <div class="global-stat">
+                        <span class="stat-number">42</span>
+                        <div class="stat-label">Countries</div>
+                    </div>
+                    <div class="global-stat">
+                        <span class="stat-number">18</span>
+                        <div class="stat-label">Industries</div>
+                    </div>
+                    <div class="global-stat">
+                        <span class="stat-number">76%</span>
+                        <div class="stat-label">Success</div>
+                    </div>
+                    <div class="global-stat">
+                        <span class="stat-number">32%</span>
+                        <div class="stat-label">Growth</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Growth Analytics -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon growth-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="card-title">Growth Analytics</h3>
+                </div>
+                <div class="line-chart">
+                    <svg width="100%" height="100%">
+                        <defs>
+                            <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#B08D57;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:0.3" />
+                                <stop offset="100%" style="stop-color:#D4AF37;stop-opacity:0" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Area under curve -->
+                        <path d="M 0,60 L 20,45 L 40,35 L 60,25 L 80,20 L 100,15 L 100,80 L 0,80 Z" 
+                              fill="url(#areaGradient)" opacity="0.5"/>
+                        <!-- Main line -->
+                        <polyline fill="none" stroke="url(#lineGradient)" stroke-width="3" 
+                                  points="0,60 20,45 40,35 60,25 80,20 100,15"/>
+                        <!-- Data points -->
+                        <circle cx="0" cy="60" r="3" fill="#D4AF37"/>
+                        <circle cx="20" cy="45" r="3" fill="#D4AF37"/>
+                        <circle cx="40" cy="35" r="3" fill="#D4AF37"/>
+                        <circle cx="60" cy="25" r="3" fill="#D4AF37"/>
+                        <circle cx="80" cy="20" r="3" fill="#D4AF37"/>
+                        <circle cx="100" cy="15" r="3" fill="#D4AF37"/>
+                    </svg>
+                </div>
+                <div class="global-stats">
+                    <div class="global-stat">
+                        <span class="stat-number">40</span>
+                        <div class="stat-label">Connections</div>
+                    </div>
+                    <div class="global-stat">
+                        <span class="stat-number">+32%</span>
+                        <div class="stat-label">Growth</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Section -->
+        <div class="bottom-section">
+            <!-- Event & Networking Hub -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="section-icon events-icon">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    <h3 class="section-title">Event & Networking Hub</h3>
+                </div>
+                <div class="event-item">
+                    <div class="event-date">AUG 22</div>
+                    <div class="event-info">
+                        <h4>DevCrunch Disrupt</h4>
+                        <p>San Francisco • Aug 25-27</p>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-date">SEP 10</div>
+                    <div class="event-info">
+                        <h4>Investor Meetup</h4>
+                        <p>London • Sep 12</p>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-date">SEP 15</div>
+                    <div class="event-info">
+                        <h4>AI Summit Virtual</h4>
+                        <p>Online • Sep 18</p>
+                    </div>
+                </div>
+                <button class="view-all-btn">View All Events</button>
+            </div>
+
+            <!-- Industry Insights -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="section-icon insights-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="section-title">Industry Insights</h3>
+                </div>
+                <div class="insight-item">
+                    <div class="insight-badge">HOT</div>
+                    <div class="event-info">
+                        <h4>Trending Markets</h4>
+                        <p>AI and Machine Learning opportunities</p>
+                    </div>
+                </div>
+                <div class="insight-item">
+                    <div class="insight-badge">NEW</div>
+                    <div class="event-info">
+                        <h4>AI Predictions</h4>
+                        <p>Emerging market trends for 2024</p>
+                    </div>
+                </div>
+                <div class="insight-item">
+                    <div class="insight-badge">TREND</div>
+                    <div class="event-info">
+                        <h4>Emerging Opportunity</h4>
+                        <p>Sustainable technology investments</p>
+                    </div>
+                </div>
+                <button class="view-all-btn">View Full Report</button>
+            </div>
+
+            <!-- Communication Hub -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="section-icon communication-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="section-title">Communication Hub</h3>
+                </div>
+                <div class="message-item">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="Sarah Johnson" class="message-avatar">
+                    <div class="message-info">
+                        <h4>Sarah Johnson</h4>
+                        <p>Hi Alex, I reviewed your proposal and...</p>
+                    </div>
+                    <div class="message-time">12m</div>
+                </div>
+                <div class="message-item">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Michael Chen" class="message-avatar">
+                    <div class="message-info">
+                        <h4>Michael Chen</h4>
+                        <p>What can we schedule a call to discuss...</p>
+                    </div>
+                    <div class="message-time">1h</div>
+                </div>
+                <div class="message-item">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=40&h=40&fit=crop&crop=face" alt="Emma Wilson" class="message-avatar">
+                    <div class="message-info">
+                        <h4>Emma Wilson</h4>
+                        <p>Our team is excited about the potential...</p>
+                    </div>
+                    <div class="message-time">3h</div>
+                </div>
+                <button class="view-all-btn">Open Messenger</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate progress bars on load
+            const progressBars = document.querySelectorAll('.progress-fill');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+
+            // Add notification and message functionality
+            const notificationsIcon = document.getElementById('notificationsIcon');
+            const messagesIcon = document.getElementById('messagesIcon');
+
+            if (notificationsIcon) {
+                notificationsIcon.addEventListener('click', function() {
+                    showNotificationPanel();
+                });
+            }
+
+            if (messagesIcon) {
+                messagesIcon.addEventListener('click', function() {
+                    showMessagesPanel();
+                });
+            }
+
+            // Add click handlers for buttons
+            document.querySelectorAll('.view-btn, .view-all-btn, .filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (this.textContent.includes('View Matches')) {
+                        window.location.href = 'connectpro.html';
+                    } else {
+                        // Show demo message for other buttons
+                        const feedback = document.createElement('div');
+                        feedback.style.cssText = `
+                            position: fixed;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            background: var(--gold-primary);
+                            color: var(--bg-charcoal);
+                            padding: 1rem 2rem;
+                            border-radius: 10px;
+                            font-weight: 600;
+                            z-index: 10000;
+                            animation: fadeInOut 2s ease-in-out forwards;
+                        `;
+                        feedback.textContent = 'Feature coming soon!';
+                        
+                        const style = document.createElement('style');
+                        style.textContent = `
+                            @keyframes fadeInOut {
+                                0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                                20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                                80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                                100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                            }
+                        `;
+                        
+                        if (!document.querySelector('#demo-feedback-styles')) {
+                            style.id = 'demo-feedback-styles';
+                            document.head.appendChild(style);
+                        }
+
+                        document.body.appendChild(feedback);
+                        
+                        setTimeout(() => {
+                            if (feedback.parentNode) {
+                                feedback.parentNode.removeChild(feedback);
+                            }
+                        }, 2000);
+                    }
+                });
+            });
+
+            // Notification and Message Panel Functions
+            function showNotificationPanel() {
+                const panel = createPanel('Notifications', [
+                    {
+                        icon: 'fas fa-user-plus',
+                        title: 'New Match Found',
+                        message: 'You have a 92% match with TechCorp Solutions',
+                        time: '2 minutes ago',
+                        type: 'success'
+                    },
+                    {
+                        icon: 'fas fa-handshake',
+                        title: 'Partnership Request',
+                        message: 'GlobalTech wants to connect with you',
+                        time: '1 hour ago',
+                        type: 'info'
+                    },
+                    {
+                        icon: 'fas fa-chart-line',
+                        title: 'Monthly Report Ready',
+                        message: 'Your analytics report is now available',
+                        time: '3 hours ago',
+                        type: 'default'
+                    }
+                ]);
+                
+                // Update badge count
+                const badge = document.querySelector('#notificationsIcon .notification-badge');
+                if (badge) {
+                    badge.textContent = '0';
+                    badge.style.display = 'none';
+                }
+            }
+
+            function showMessagesPanel() {
+                const panel = createPanel('Messages', [
+                    {
+                        icon: 'fas fa-user',
+                        title: 'Sarah Johnson',
+                        message: 'Hi! I\'m interested in discussing a potential partnership...',
+                        time: '5 minutes ago',
+                        type: 'message',
+                        avatar: 'https://images.unsplash.com/photo-1494790108755-2616b9c07918?w=40&h=40&fit=crop&crop=face'
+                    },
+                    {
+                        icon: 'fas fa-user',
+                        title: 'Michael Chen',
+                        message: 'Great to connect! When can we schedule a call?',
+                        time: '20 minutes ago',
+                        type: 'message',
+                        avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face'
+                    },
+                    {
+                        icon: 'fas fa-user',
+                        title: 'Alex Rivera',
+                        message: 'Thanks for the proposal. Our team is reviewing it.',
+                        time: '1 hour ago',
+                        type: 'message',
+                        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face'
+                    }
+                ]);
+
+                // Update badge count
+                const badge = document.querySelector('#messagesIcon .notification-badge');
+                if (badge) {
+                    badge.textContent = '0';
+                    badge.style.display = 'none';
+                }
+            }
+
+            function createPanel(title, items) {
+                // Remove existing panel
+                const existingPanel = document.querySelector('.notification-panel');
+                if (existingPanel) {
+                    existingPanel.remove();
+                }
+
+                const panel = document.createElement('div');
+                panel.className = 'notification-panel';
+                panel.innerHTML = `
+                    <div class="panel-header">
+                        <h3>${title}</h3>
+                        <button class="panel-close" onclick="this.parentElement.parentElement.remove()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="panel-content">
+                        ${items.map(item => `
+                            <div class="panel-item ${item.type}">
+                                <div class="item-icon">
+                                    ${item.avatar ? 
+                                        `<img src="${item.avatar}" alt="${item.title}" class="avatar-img">` :
+                                        `<i class="${item.icon}"></i>`
+                                    }
+                                </div>
+                                <div class="item-content">
+                                    <h4>${item.title}</h4>
+                                    <p>${item.message}</p>
+                                    <span class="item-time">${item.time}</span>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="panel-footer">
+                        <button class="view-all-panel-btn">View All ${title}</button>
+                    </div>
+                `;
+
+                // Add styles for the panel
+                const style = document.createElement('style');
+                style.textContent = `
+                    .notification-panel {
+                        position: fixed;
+                        top: 80px;
+                        right: 2rem;
+                        width: 400px;
+                        max-height: 500px;
+                        background: rgba(13, 13, 13, 0.95);
+                        backdrop-filter: blur(20px);
+                        border: 2px solid var(--gold-primary);
+                        border-radius: 20px;
+                        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+                        z-index: 10000;
+                        animation: slideInRight 0.3s ease-out;
+                        overflow: hidden;
+                    }
+
+                    @keyframes slideInRight {
+                        from { transform: translateX(100%); opacity: 0; }
+                        to { transform: translateX(0); opacity: 1; }
+                    }
+
+                    .panel-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 1.5rem;
+                        border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+                        background: rgba(212, 175, 55, 0.1);
+                    }
+
+                    .panel-header h3 {
+                        color: var(--gold-primary);
+                        font-family: 'Montserrat', sans-serif;
+                        font-weight: 800;
+                        margin: 0;
+                        font-size: 1.2rem;
+                    }
+
+                    .panel-close {
+                        background: none;
+                        border: none;
+                        color: var(--white-text);
+                        font-size: 1.2rem;
+                        cursor: pointer;
+                        padding: 0.5rem;
+                        border-radius: 50%;
+                        transition: all 0.3s ease;
+                    }
+
+                    .panel-close:hover {
+                        background: rgba(212, 175, 55, 0.2);
+                        color: var(--gold-primary);
+                    }
+
+                    .panel-content {
+                        max-height: 300px;
+                        overflow-y: auto;
+                        padding: 1rem;
+                    }
+
+                    .panel-item {
+                        display: flex;
+                        gap: 1rem;
+                        padding: 1rem;
+                        margin-bottom: 0.5rem;
+                        background: rgba(255, 255, 255, 0.05);
+                        border-radius: 10px;
+                        border-left: 3px solid transparent;
+                        transition: all 0.3s ease;
+                        cursor: pointer;
+                    }
+
+                    .panel-item:hover {
+                        background: rgba(212, 175, 55, 0.1);
+                        transform: translateX(5px);
+                    }
+
+                    .panel-item.success {
+                        border-left-color: #27ae60;
+                    }
+
+                    .panel-item.info {
+                        border-left-color: #3498db;
+                    }
+
+                    .panel-item.message {
+                        border-left-color: var(--gold-primary);
+                    }
+
+                    .item-icon {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: rgba(212, 175, 55, 0.2);
+                        color: var(--gold-primary);
+                        flex-shrink: 0;
+                    }
+
+                    .avatar-img {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+
+                    .item-content h4 {
+                        color: var(--white-text);
+                        margin: 0 0 0.5rem 0;
+                        font-size: 0.9rem;
+                        font-weight: 600;
+                    }
+
+                    .item-content p {
+                        color: var(--gray-light);
+                        margin: 0 0 0.5rem 0;
+                        font-size: 0.8rem;
+                        line-height: 1.4;
+                    }
+
+                    .item-time {
+                        color: var(--bronze-secondary);
+                        font-size: 0.7rem;
+                    }
+
+                    .panel-footer {
+                        padding: 1rem 1.5rem;
+                        border-top: 1px solid rgba(212, 175, 55, 0.2);
+                        background: rgba(0, 0, 0, 0.2);
+                    }
+
+                    .view-all-panel-btn {
+                        width: 100%;
+                        background: var(--gold-primary);
+                        color: var(--bg-charcoal);
+                        border: none;
+                        padding: 0.8rem;
+                        border-radius: 10px;
+                        font-weight: 600;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                    }
+
+                    .view-all-panel-btn:hover {
+                        background: var(--bronze-secondary);
+                        transform: translateY(-2px);
+                    }
+
+                    @media (max-width: 768px) {
+                        .notification-panel {
+                            right: 1rem;
+                            width: calc(100vw - 2rem);
+                            max-width: 400px;
+                        }
+                    }
+                `;
+
+                if (!document.querySelector('#panel-styles')) {
+                    style.id = 'panel-styles';
+                    document.head.appendChild(style);
+                }
+
+                document.body.appendChild(panel);
+
+                // Auto-hide after 10 seconds
+                setTimeout(() => {
+                    if (panel.parentNode) {
+                        panel.style.animation = 'slideInRight 0.3s ease-out reverse';
+                        setTimeout(() => panel.remove(), 300);
+                    }
+                }, 10000);
+
+                return panel;
+            }
+        });
+    </script>
+    <script src="page-transition.js"></script>
+</body>
+</html>

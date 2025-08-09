@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConnectPro - Globify</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ==== Global Styles ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #1f2937;
+  color: #f3f4f6;
+  line-height: 1.6;
+}
+
+/* ==== Developer Section ==== */
+.developer-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.developer-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.developer-section p {
+  font-size: 1.1rem;
+  color: #d1d5db;
+  margin-bottom: 40px;
+}
+
+/* ==== Developer Cards ==== */
+.developer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.developer-card {
+  background: #273549;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.developer-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.developer-card img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 3px solid #3b82f6;
+}
+
+.developer-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.developer-card span {
+  display: block;
+  font-size: 0.95rem;
+  color: #9ca3af;
+  margin-bottom: 15px;
+}
+
+.developer-card p {
+  font-size: 0.95rem;
+  color: #d1d5db;
+  margin-bottom: 20px;
+}
+
+/* ==== Social Links ==== */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-links a {
+  color: #f3f4f6;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #3b82f6;
+}
+
+        body {
+            background-color: var(--bg-charcoal);
+            color: var(--white-text);
+            min-height: 100vh;
+            margin: 0;
+            padding-top: 100px;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .connectpro-container {
+            padding: 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+            min-height: calc(100vh - 100px);
+        }
+
+        .connectpro-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .connectpro-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 3rem;
+            color: var(--gold-primary);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px var(--gold-glow);
+        }
+
+        .connectpro-header p {
+            font-size: 1.2rem;
+            color: var(--gray-light);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        /* ConnectPro Style Matching Interface */
+        .connectpro-section {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            min-height: 600px;
+        }
+
+        .main-matching-area {
+            flex: 2;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .matching-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .match-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 25px;
+            padding: 0.5rem;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .match-tab {
+            background: none;
+            border: none;
+            color: var(--gray-light);
+            padding: 0.8rem 2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .match-tab.active {
+            background: var(--gold-primary);
+            color: var(--bg-charcoal);
+            font-weight: 600;
+        }
+
+        .match-card-container {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .match-card {
+            width: 100%;
+            max-width: 400px;
+            background: linear-gradient(145deg, rgba(13, 13, 13, 0.9), rgba(212, 175, 55, 0.05));
+            border: 3px solid var(--gold-primary);
+            border-radius: 25px;
+            padding: 2rem;
+            position: relative;
+            cursor: grab;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .match-card:active {
+            cursor: grabbing;
+        }
+
+        .match-card.swiping-left {
+            transform: translateX(-100px) rotate(-10deg);
+            opacity: 0.7;
+        }
+
+        .match-card.swiping-right {
+            transform: translateX(100px) rotate(10deg);
+            opacity: 0.7;
+        }
+
+        .profile-image {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-image img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--gold-primary);
+            object-fit: cover;
+        }
+
+        .profile-name {
+            color: var(--white-text);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+            margin: 0 0 0.5rem 0;
+            text-align: center;
+        }
+
+        .profile-title {
+            color: var(--gray-light);
+            font-size: 1.1rem;
+            text-align: center;
+            margin: 0 0 1rem 0;
+        }
+
+        .profile-tags {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: var(--gold-primary);
+            color: var(--bg-charcoal);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .tag.fintech {
+            background: var(--bronze-secondary);
+        }
+
+        .tag.ai {
+            background: linear-gradient(135deg, var(--gold-primary), var(--bronze-secondary));
+        }
+
+        .profile-description {
+            color: var(--gray-light);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .profile-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 15px;
+        }
+
+        .profile-stats .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .profile-stats .stat i {
+            color: var(--gold-primary);
+            font-size: 1.2rem;
+        }
+
+        .profile-stats .stat span {
+            color: var(--white-text);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .match-strength {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border: 1px solid var(--gold-primary);
+        }
+
+        .match-label {
+            display: block;
+            color: var(--gray-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .match-percentage {
+            color: var(--gold-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.3rem;
+        }
+
+        .swipe-actions {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .swipe-btn {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.2rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .btn-emoji {
+            font-size: 1.5rem;
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.2rem;
+        }
+
+        .btn-text {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+        }
+
+        .pass-btn {
+            background: rgba(244, 67, 54, 0.3);
+            color: #f44336;
+            border: 3px solid #f44336;
+        }
+
+        .pass-btn .btn-emoji {
+            color: #f44336;
+            font-size: 1.8rem;
+        }
+
+        .pass-btn:hover {
+            background: #f44336;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .pass-btn:hover .btn-emoji,
+        .pass-btn:hover .btn-text {
+            color: white;
+        }
+
+        .connect-btn {
+            background: linear-gradient(135deg, var(--gold-primary), var(--bronze-secondary));
+            color: var(--bg-charcoal);
+            border: 3px solid var(--gold-primary);
+            width: 80px;
+            height: 80px;
+        }
+
+        .connect-btn .btn-emoji {
+            color: var(--bg-charcoal);
+            font-size: 2rem;
+        }
+
+        .connect-btn .btn-text {
+            color: var(--bg-charcoal);
+            font-size: 0.8rem;
+        }
+
+        .connect-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .save-btn {
+            background: rgba(76, 175, 80, 0.3);
+            color: #4caf50;
+            border: 3px solid #4caf50;
+        }
+
+        .save-btn .btn-emoji {
+            color: #4caf50;
+            font-size: 1.8rem;
+        }
+
+        .save-btn:hover {
+            background: #4caf50;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .save-btn:hover .btn-emoji,
+        .save-btn:hover .btn-text {
+            color: white;
+        }
+
+        .sidebar-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .sidebar-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .sidebar-card h3 {
+            color: var(--gold-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            margin: 0 0 1rem 0;
+            font-size: 1.2rem;
+        }
+
+        .mini-match, .connection-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .mini-match:hover, .connection-item:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateX(5px);
+        }
+
+        .mini-match img, .connection-item img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--gold-primary);
+        }
+
+        .mini-info, .connection-info {
+            flex: 1;
+        }
+
+        .mini-info h4, .connection-info h4 {
+            color: var(--white-text);
+            margin: 0 0 0.2rem 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .mini-info p, .connection-info p {
+            color: var(--gray-light);
+            margin: 0;
+            font-size: 0.8rem;
+        }
+
+        .match-score {
+            background: var(--gold-primary);
+            color: var(--bg-charcoal);
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .connection-item i {
+            color: var(--gold-primary);
+            font-size: 1.1rem;
+        }
+
+        .back-to-dashboard {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--gold-primary);
+            color: var(--gold-primary);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .back-to-dashboard:hover {
+            background: var(--gold-primary);
+            color: var(--bg-charcoal);
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .connectpro-section {
+                flex-direction: column;
+            }
+
+            .main-matching-area {
+                padding: 1.5rem;
+            }
+
+            .match-card {
+                max-width: none;
+                padding: 1.5rem;
+            }
+
+            .swipe-actions {
+                gap: 1rem;
+            }
+
+            .swipe-btn {
+                width: 60px;
+                height: 60px;
+            }
+
+            .connect-btn {
+                width: 70px;
+                height: 70px;
+            }
+
+            .connectpro-header h1 {
+                font-size: 2rem;
+            }
+
+            .back-to-dashboard {
+                top: 1rem;
+                left: 1rem;
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+            .developer-section h1 {
+                font-size: 2rem;
+            }
+            .developer-section p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="/beta/dashboard-new.html" class="back-to-dashboard">
+        <i class="fas fa-arrow-left"></i>
+        Back to Dashboard
+    </a>
+
+    <div class="connectpro-container">
+        <div class="connectpro-header">
+            <h1>🤝 ConnectPro</h1>
+            <p>Discover your perfect business partners through AI-powered matching. Swipe to connect with investors, founders, and industry leaders.</p>
+        </div>
+
+        <!-- ConnectPro Style Matching Section -->
+        <div class="connectpro-section">
+            <div class="main-matching-area">
+                <div class="matching-header">
+                    <div class="match-tabs">
+                        <button class="match-tab active" data-tab="daily">Daily Matches</button>
+                        <button class="match-tab" data-tab="unlocked">12/20 Unlocked</button>
+                    </div>
+                </div>
+                
+                <div class="match-card-container">
+                    <div class="match-card" id="currentMatchCard">
+                        <div class="match-profile">
+                            <div class="profile-image">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="Profile" id="profileImage">
+                            </div>
+                            <div class="profile-info">
+                                <h2 class="profile-name" id="profileName">Sarah Johnson</h2>
+                                <p class="profile-title" id="profileTitle">Senior Product Manager</p>
+                                <div class="profile-tags">
+                                    <span class="tag tech" id="profileTag1">Tech</span>
+                                    <span class="tag fintech" id="profileTag2">Fintech</span>
+                                    <span class="tag ai" id="profileTag3">AI</span>
+                                </div>
+                                <p class="profile-description" id="profileDescription">
+                                    Product Manager with 7+ years experience in SaaS platforms. Looking to connect with engineers and designers for potential collaborations on new ventures in AI and fintech.
+                                </p>
+                                <div class="profile-stats">
+                                    <div class="stat">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span id="profileLocation">San Francisco</span>
+                                    </div>
+                                    <div class="stat">
+                                        <i class="fas fa-users"></i>
+                                        <span id="profileTeam">50-200 emp</span>
+                                    </div>
+                                    <div class="stat">
+                                        <i class="fas fa-chart-line"></i>
+                                        <span id="profileSeries">Series A</span>
+                                    </div>
+                                </div>
+                                <div class="match-strength">
+                                    <span class="match-label">Match Strength</span>
+                                    <span class="match-percentage" id="matchPercentage">92% Compatible</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="swipe-actions">
+                    <button class="swipe-btn pass-btn" id="passBtn">
+                        <span class="btn-emoji">✕</span>
+                        <span class="btn-text">Pass</span>
+                    </button>
+                    <button class="swipe-btn connect-btn" id="connectBtn">
+                        <span class="btn-emoji">🤝</span>
+                        <span class="btn-text">Connect</span>
+                    </button>
+                    <button class="swipe-btn save-btn" id="saveBtn">
+                        <span class="btn-emoji">⭐</span>
+                        <span class="btn-text">Save</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-card">
+                    <h3>Today's Matches</h3>
+                    <div class="today-matches">
+                        <div class="mini-match">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Alex Rivera">
+                            <div class="mini-info">
+                                <h4>Alex Rivera</h4>
+                                <p>UX Designer • Fintech</p>
+                            </div>
+                            <span class="match-score">85%</span>
+                        </div>
+                        <div class="mini-match">
+                            <img src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=40&h=40&fit=crop&crop=face" alt="Taylor Kim">
+                            <div class="mini-info">
+                                <h4>Taylor Kim</h4>
+                                <p>Software Engineer • SaaS</p>
+                            </div>
+                            <span class="match-score">83%</span>
+                        </div>
+                        <div class="mini-match">
+                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=40&h=40&fit=crop&crop=face" alt="Jordan Smith">
+                            <div class="mini-info">
+                                <h4>Jordan Smith</h4>
+                                <p>Investor • Healthcare</p>
+                            </div>
+                            <span class="match-score">78%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-card">
+                    <h3>Recent Connections</h3>
+                    <div class="recent-connections">
+                        <div class="connection-item">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face" alt="Jamie Lee">
+                            <div class="connection-info">
+                                <h4>Jamie Lee</h4>
+                                <p>Connected Jul 28, 2025</p>
+                            </div>
+                            <i class="fas fa-message"></i>
+                        </div>
+                        <div class="connection-item">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=40&h=40&fit=crop&crop=face" alt="Casey Morgan">
+                            <div class="connection-info">
+                                <h4>Casey Morgan</h4>
+                                <p>Connected Jul 28, 2025</p>
+                            </div>
+                            <i class="fas fa-message"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ConnectPro Matching System
+        function initializeConnectPro() {
+            const matchCard = document.getElementById('currentMatchCard');
+            const passBtn = document.getElementById('passBtn');
+            const connectBtn = document.getElementById('connectBtn');
+            const saveBtn = document.getElementById('saveBtn');
+            const matchTabs = document.querySelectorAll('.match-tab');
+
+            // Sample profile data
+            const profiles = [
+                {
+                    name: "Sarah Johnson",
+                    title: "Senior Product Manager",
+                    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+                    tags: ["Tech", "Fintech", "AI"],
+                    description: "Product Manager with 7+ years experience in SaaS platforms. Looking to connect with engineers and designers for potential collaborations on new ventures in AI and fintech.",
+                    location: "San Francisco",
+                    team: "50-200 emp",
+                    series: "Series A",
+                    matchPercentage: "92% Compatible"
+                },
+                {
+                    name: "Michael Chen",
+                    title: "Investment Director",
+                    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+                    tags: ["Investor", "SaaS", "Healthcare"],
+                    description: "Investment director at HealthTech Ventures with $500M AUM. Actively seeking innovative healthcare startups with strong AI/ML components for Series A funding.",
+                    location: "New York",
+                    team: "Investment Firm",
+                    series: "Series A-C",
+                    matchPercentage: "89% Compatible"
+                },
+                {
+                    name: "Elena Rodriguez",
+                    title: "CTO & Co-founder",
+                    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face",
+                    tags: ["Founder", "DeepTech", "Enterprise"],
+                    description: "CTO at AI-powered logistics platform serving Fortune 500 companies. Looking for strategic partnerships and potential acquisition targets in supply chain automation.",
+                    location: "London",
+                    team: "200+ emp",
+                    series: "Series B",
+                    matchPercentage: "94% Compatible"
+                },
+                {
+                    name: "David Kim",
+                    title: "Head of Partnerships",
+                    image: "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=150&h=150&fit=crop&crop=face",
+                    tags: ["Partnerships", "Fintech", "Global"],
+                    description: "Head of Global Partnerships at leading fintech unicorn. Seeking innovative startups for strategic partnerships, integrations, and joint ventures in emerging markets.",
+                    location: "Singapore",
+                    team: "500+ emp",
+                    series: "Unicorn",
+                    matchPercentage: "86% Compatible"
+                }
+            ];
+
+            let currentProfileIndex = 0;
+            let isAnimating = false;
+
+            // Initialize first profile
+            updateProfile(profiles[currentProfileIndex]);
+
+            // Tab switching
+            matchTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    matchTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                });
+            });
+
+            // Swipe button handlers
+            passBtn.addEventListener('click', () => handleSwipe('pass'));
+            connectBtn.addEventListener('click', () => handleSwipe('connect'));
+            saveBtn.addEventListener('click', () => handleSwipe('save'));
+
+            // Touch/mouse swipe functionality
+            let startX = 0;
+            let currentX = 0;
+            let isDragging = false;
+
+            matchCard.addEventListener('mousedown', startDrag);
+            matchCard.addEventListener('touchstart', startDrag);
+            
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('touchmove', drag);
+            
+            document.addEventListener('mouseup', endDrag);
+            document.addEventListener('touchend', endDrag);
+
+            function startDrag(e) {
+                if (isAnimating) return;
+                isDragging = true;
+                startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+                matchCard.style.transition = 'none';
+            }
+
+            function drag(e) {
+                if (!isDragging || isAnimating) return;
+                e.preventDefault();
+                currentX = (e.type === 'mousemove' ? e.clientX : e.touches[0].clientX) - startX;
+                
+                const rotation = currentX * 0.1;
+                const opacity = 1 - Math.abs(currentX) / 300;
+                
+                matchCard.style.transform = `translateX(${currentX}px) rotate(${rotation}deg)`;
+                matchCard.style.opacity = Math.max(0.3, opacity);
+
+                // Visual feedback
+                if (currentX > 50) {
+                    matchCard.classList.add('swiping-right');
+                    matchCard.classList.remove('swiping-left');
+                } else if (currentX < -50) {
+                    matchCard.classList.add('swiping-left');
+                    matchCard.classList.remove('swiping-right');
+                } else {
+                    matchCard.classList.remove('swiping-left', 'swiping-right');
+                }
+            }
+
+            function endDrag() {
+                if (!isDragging || isAnimating) return;
+                isDragging = false;
+                
+                matchCard.style.transition = 'all 0.3s ease';
+                
+                if (Math.abs(currentX) > 100) {
+                    // Trigger swipe action
+                    if (currentX > 0) {
+                        handleSwipe('connect');
+                    } else {
+                        handleSwipe('pass');
+                    }
+                } else {
+                    // Snap back to center
+                    matchCard.style.transform = 'translateX(0) rotate(0deg)';
+                    matchCard.style.opacity = '1';
+                    matchCard.classList.remove('swiping-left', 'swiping-right');
+                }
+                
+                currentX = 0;
+            }
+
+            function handleSwipe(action) {
+                if (isAnimating) return;
+                isAnimating = true;
+
+                const actionMessages = {
+                    pass: 'Passed on this match',
+                    connect: 'Connection request sent!',
+                    save: 'Saved for later review'
+                };
+
+                const actionColors = {
+                    pass: '#f44336',
+                    connect: '#D4AF37',
+                    save: '#4caf50'
+                };
+
+                // Show action feedback
+                showActionFeedback(actionMessages[action], actionColors[action]);
+
+                // Animate card out
+                const direction = action === 'pass' ? -1 : 1;
+                matchCard.style.transform = `translateX(${direction * 300}px) rotate(${direction * 20}deg)`;
+                matchCard.style.opacity = '0';
+
+                setTimeout(() => {
+                    // Move to next profile
+                    currentProfileIndex = (currentProfileIndex + 1) % profiles.length;
+                    updateProfile(profiles[currentProfileIndex]);
+                    
+                    // Reset card position
+                    matchCard.style.transition = 'none';
+                    matchCard.style.transform = 'translateX(0) rotate(0deg)';
+                    matchCard.style.opacity = '1';
+                    matchCard.classList.remove('swiping-left', 'swiping-right');
+                    
+                    setTimeout(() => {
+                        matchCard.style.transition = 'all 0.3s ease';
+                        isAnimating = false;
+                    }, 50);
+                }, 300);
+            }
+
+            function updateProfile(profile) {
+                document.getElementById('profileImage').src = profile.image;
+                document.getElementById('profileName').textContent = profile.name;
+                document.getElementById('profileTitle').textContent = profile.title;
+                document.getElementById('profileTag1').textContent = profile.tags[0];
+                document.getElementById('profileTag2').textContent = profile.tags[1];
+                document.getElementById('profileTag3').textContent = profile.tags[2];
+                document.getElementById('profileDescription').textContent = profile.description;
+                document.getElementById('profileLocation').textContent = profile.location;
+                document.getElementById('profileTeam').textContent = profile.team;
+                document.getElementById('profileSeries').textContent = profile.series;
+                document.getElementById('matchPercentage').textContent = profile.matchPercentage;
+            }
+
+            function showActionFeedback(message, color) {
+                const feedback = document.createElement('div');
+                feedback.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: ${color};
+                    color: white;
+                    padding: 1rem 2rem;
+                    border-radius: 10px;
+                    font-weight: 600;
+                    z-index: 10000;
+                    animation: fadeInOut 2s ease-in-out forwards;
+                `;
+                feedback.textContent = message;
+                
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes fadeInOut {
+                        0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                        20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                        80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                        100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                    }
+                `;
+                
+                if (!document.querySelector('#feedback-styles')) {
+                    style.id = 'feedback-styles';
+                    document.head.appendChild(style);
+                }
+
+                document.body.appendChild(feedback);
+                
+                setTimeout(() => {
+                    if (feedback.parentNode) {
+                        feedback.parentNode.removeChild(feedback);
+                    }
+                }, 2000);
+            }
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeConnectPro();
+        });
+    </script>
+    <script src="page-transition.js"></script>
+</body>
+</html>

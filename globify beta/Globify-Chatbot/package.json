@@ -1,0 +1,43 @@
+{
+  "name": "globify-chatbot",
+  "version": "1.0.0",
+  "description": "AI-powered chatbot for Globify - Global Business Matchmaking Platform",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8080",
+    "dev": "python -m http.server 8080",
+    "build": "echo 'No build process needed for static site'",
+    "serve": "python -m http.server 8080"
+  },
+  "keywords": [
+    "chatbot",
+    "ai",
+    "business",
+    "matchmaking",
+    "globify",
+    "startups",
+    "enterprise",
+    "global",
+    "partnerships"
+  ],
+  "author": "Globify Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/globify/chatbot"
+  },
+  "bugs": {
+    "url": "https://github.com/globify/chatbot/issues"
+  },
+  "homepage": "https://globify.com/chatbot",
+  "devDependencies": {},
+  "dependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

@@ -4,32 +4,26 @@ import os
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.secret_key = 'your-secret-key-here'  # Change this to a secure secret key
+app.secret_key = 'your-secret-key-here'  
 
-# MySQL Database Configuration
 db_config = {
-    'host': 'localhost',
-    'user': 'root',  # Change to your MySQL username
-    'password': 'Krish2006',   # Change to your MySQL password
-    'database': 'globify_db'
+    'host': os.getenv('DB_HOST', 'localhost'),
+    'user': os.getenv('DB_USER', 'root'),
+    'password': os.getenv('DB_PASSWORD', 'Krish2006'),
+    'database': os.getenv('DB_NAME', 'globify_db')
 }
 
 def create_database():
     """Create database and tables if they don't exist"""
     try:
-        # Connect without specifying database first
         conn = mysql.connector.connect(
             host=db_config['host'],
             user=db_config['user'],
             password=db_config['password']
         )
         cursor = conn.cursor()
-        
-        # Create database if it doesn't exist
         cursor.execute("CREATE DATABASE IF NOT EXISTS globify_db")
         cursor.execute("USE globify_db")
-        
-        # Create users table
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS users (
                 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -41,12 +35,10 @@ def create_database():
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
-        
         conn.commit()
         cursor.close()
         conn.close()
         print("✅ Database and tables created successfully!")
-        
     except mysql.connector.Error as err:
         print(f"❌ Database error: {err}")
 
@@ -67,18 +59,35 @@ def home():
 def serve_css():
     return send_from_directory('templates', 'styles.css')
 
+# Globify beta routes
 @app.route('/beta')
 def beta_model():
-    return send_from_directory('beta-model', 'index.html')
+    return send_from_directory('globify beta', 'index.html')
 
 @app.route('/beta/<path:filename>')
 def beta_static(filename):
-    return send_from_directory('beta-model', filename)
+    return send_from_directory('globify beta', filename)
 
+# Chatbot static
 @app.route('/chatbot/<path:filename>')
 def chatbot_static(filename):
     return send_from_directory('chatbot', filename)
 
+# Dashboard routes
+@app.route('/dashboard')
+def dashboard_page():
+    # Simple auth check; redirect to login if not logged in
+    if not session.get('user_id'):
+        flash('Please login to continue', 'error')
+        return redirect(url_for('login'))
+    return send_from_directory('dashboard', 'index.html')
+
+@app.route('/dashboard/<path:filename>')
+def dashboard_static(filename):
+    # Optionally enforce auth for assets; usually not needed
+    return send_from_directory('dashboard', filename)
+
+# Auth routes
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
@@ -102,7 +111,7 @@ def login():
             session['user_id'] = user['id']
             session['username'] = user['username']
             flash('Login successful!', 'success')
-            return redirect(url_for('home'))
+            return redirect(url_for('dashboard_page'))
         else:
             flash('Invalid email or password', 'error')
             return redirect(url_for('login'))
@@ -169,6 +178,15 @@ def signup():
         cursor.close()
         conn.close()
 
+@app.route('/forgot-password', methods=['GET', 'POST'])
+def forgot_password():
+    if request.method == 'GET':
+        return render_template('forgot_password.html')
+    
+    email = request.form.get('email')
+    # In a real app, generate token and send email
+    flash('If an account with that email exists, a reset link has been sent.', 'success')
+    return redirect(url_for('login'))
 
 @app.route('/logout')
 def logout():

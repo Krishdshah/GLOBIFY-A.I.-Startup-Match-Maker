@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Globify - Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: var(--bg-charcoal);
+            color: var(--white-text);
+            min-height: 100vh;
+            margin: 0;
+            padding-top: 100px; /* Account for fixed header */
+        }
+        
+        .dashboard-container {
+            padding: 3rem 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+            min-height: calc(100vh - 100px);
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid var(--gold-primary);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .welcome-section h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            color: var(--gold-primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .welcome-section p {
+            color: var(--gray-light);
+            font-size: 1.1rem;
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold-primary), var(--bronze-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--bg-charcoal);
+            font-weight: bold;
+        }
+        
+        .user-info h3 {
+            color: var(--white-text);
+            margin: 0 0 0.3rem 0;
+            font-size: 1.2rem;
+        }
+        
+        .user-info p {
+            color: var(--gray-light);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+        
+        .dashboard-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            min-height: 300px;
+        }
+        
+        .dashboard-card:hover {
+            border-color: var(--gold-primary);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--gold-primary), var(--bronze-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--bg-charcoal);
+        }
+        
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            color: var(--gold-primary);
+            font-size: 1.3rem;
+            margin: 0;
+        }
+        
+        .card-content {
+            color: var(--gray-light);
+            line-height: 1.6;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 12px;
+        }
+        
+        .stat-number {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2rem;
+            color: var(--gold-primary);
+            display: block;
+        }
+        
+        .stat-label {
+            color: var(--gray-light);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .action-btn {
+            background: linear-gradient(135deg, var(--gold-primary), var(--bronze-secondary));
+            color: var(--bg-charcoal);
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            min-width: 150px;
+            text-align: center;
+            white-space: nowrap;
+            font-size: 0.9rem;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+        
+        .recent-activity {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gold-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-charcoal);
+            font-size: 1rem;
+        }
+        
+        .activity-content h4 {
+            color: var(--white-text);
+            margin: 0 0 0.3rem 0;
+            font-size: 1rem;
+        }
+        
+        .activity-content p {
+            color: var(--gray-light);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        
+        .activity-time {
+            color: var(--bronze-secondary);
+            font-size: 0.8rem;
+            margin-left: auto;
+        }
+        
+        /* ConnectPro Style Matching Interface */
+        .connectpro-section {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            min-height: 600px;
+        }
+
+        .main-matching-area {
+            flex: 2;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .matching-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .match-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 25px;
+            padding: 0.5rem;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .match-tab {
+            background: none;
+            border: none;
+            color: var(--gray-light);
+            padding: 0.8rem 2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .match-tab.active {
+            background: var(--gold-primary);
+            color: var(--bg-charcoal);
+            font-weight: 600;
+        }
+
+        .match-card-container {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .match-card {
+            width: 100%;
+            max-width: 400px;
+            background: linear-gradient(145deg, rgba(13, 13, 13, 0.9), rgba(212, 175, 55, 0.05));
+            border: 3px solid var(--gold-primary);
+            border-radius: 25px;
+            padding: 2rem;
+            position: relative;
+            cursor: grab;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .match-card:active {
+            cursor: grabbing;
+        }
+
+        .match-card.swiping-left {
+            transform: translateX(-100px) rotate(-10deg);
+            opacity: 0.7;
+        }
+
+        .match-card.swiping-right {
+            transform: translateX(100px) rotate(10deg);
+            opacity: 0.7;
+        }
+
+        .profile-image {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-image img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--gold-primary);
+            object-fit: cover;
+        }
+
+        .profile-name {
+            color: var(--white-text);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+            margin: 0 0 0.5rem 0;
+            text-align: center;
+        }
+
+        .profile-title {
+            color: var(--gray-light);
+            font-size: 1.1rem;
+            text-align: center;
+            margin: 0 0 1rem 0;
+        }
+
+        .profile-tags {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: var(--gold-primary);
+            color: var(--bg-charcoal);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .tag.fintech {
+            background: var(--bronze-secondary);
+        }
+
+        .tag.ai {
+            background: linear-gradient(135deg, var(--gold-primary), var(--bronze-secondary));
+        }
+
+        .profile-description {
+            color: var(--gray-light);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .profile-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 15px;
+        }
+
+        .profile-stats .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .profile-stats .stat i {
+            color: var(--gold-primary);
+            font-size: 1.2rem;
+        }
+
+        .profile-stats .stat span {
+            color: var(--white-text);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .match-strength {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border: 1px solid var(--gold-primary);
+        }
+
+        .match-label {
+            display: block;
+            color: var(--gray-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .match-percentage {
+            color: var(--gold-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.3rem;
+        }
+
+        .swipe-actions {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .swipe-btn {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.2rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .btn-emoji {
+            font-size: 1.5rem;
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.2rem;
+        }
+
+        .btn-text {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+        }
+
+        .pass-btn {
+            background: rgba(244, 67, 54, 0.3);
+            color: #f44336;
+            border: 3px solid #f44336;
+        }
+
+        .pass-btn .btn-emoji {
+            color: #f44336;
+            font-size: 1.8rem;
+        }
+
+        .pass-btn:hover {
+            background: #f44336;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .pass-btn:hover .btn-emoji,
+        .pass-btn:hover .btn-text {
+            color: white;
+        }
+
+        .connect-btn {
+            background: linear-gradient(135deg, var(--gold-primary), var(--bronze-secondary));
+            color: var(--bg-charcoal);
+            border: 3px solid var(--gold-primary);
+            width: 80px;
+            height: 80px;
+        }
+
+        .connect-btn .btn-emoji {
+            color: var(--bg-charcoal);
+            font-size: 2rem;
+        }
+
+        .connect-btn .btn-text {
+            color: var(--bg-charcoal);
+            font-size: 0.8rem;
+        }
+
+        .connect-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .save-btn {
+            background: rgba(76, 175, 80, 0.3);
+            color: #4caf50;
+            border: 3px solid #4caf50;
+        }
+
+        .save-btn .btn-emoji {
+            color: #4caf50;
+            font-size: 1.8rem;
+        }
+
+        .save-btn:hover {
+            background: #4caf50;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .save-btn:hover .btn-emoji,
+        .save-btn:hover .btn-text {
+            color: white;
+        }
+
+        .sidebar-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .sidebar-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .sidebar-card h3 {
+            color: var(--gold-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            margin: 0 0 1rem 0;
+            font-size: 1.2rem;
+        }
+
+        .mini-match, .connection-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .mini-match:hover, .connection-item:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateX(5px);
+        }
+
+        .mini-match img, .connection-item img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--gold-primary);
+        }
+
+        .mini-info, .connection-info {
+            flex: 1;
+        }
+
+        .mini-info h4, .connection-info h4 {
+            color: var(--white-text);
+            margin: 0 0 0.2rem 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .mini-info p, .connection-info p {
+            color: var(--gray-light);
+            margin: 0;
+            font-size: 0.8rem;
+        }
+
+        .match-score {
+            background: var(--gold-primary);
+            color: var(--bg-charcoal);
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .connection-item i {
+            color: var(--gold-primary);
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .connectpro-section {
+                flex-direction: column;
+            }
+
+            .main-matching-area {
+                padding: 1.5rem;
+            }
+
+            .match-card {
+                max-width: none;
+                padding: 1.5rem;
+            }
+
+            .swipe-actions {
+                gap: 1rem;
+            }
+
+            .swipe-btn {
+                width: 60px;
+                height: 60px;
+            }
+
+            .connect-btn {
+                width: 70px;
+                height: 70px;
+            }
+
+            .dashboard-header {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            
+            .action-buttons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo" onclick="window.location.href='/beta'" style="cursor: pointer;">
+                <img src="assets/logo.gif" alt="Globify Logo" class="logo-image" />
+                <span class="logo-text">Globify</span>
+            </div>
+            <ul>
+                <li><a href="/beta/dashboard-new.html">Dashboard</a></li>
+                <li><a href="#matches">Matches</a></li>
+                <li><a href="#messages">Messages</a></li>
+                <li><a href="#profile">Profile</a></li>
+                <li><a href="/beta/index.html" style="color: var(--bronze-secondary);">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <div class="welcome-section">
+                <h1>Welcome back!</h1>
+                <p>Ready to connect with global opportunities?</p>
+            </div>
+            <div class="user-profile">
+                <div class="user-avatar">DU</div>
+                <div class="user-info">
+                    <h3>Demo User</h3>
+                    <p>Startup Founder</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ConnectPro Style Matching Section -->
+        <div class="connectpro-section">
+            <div class="main-matching-area">
+                <div class="matching-header">
+                    <div class="match-tabs">
+                        <button class="match-tab active" data-tab="daily">Daily Matches</button>
+                        <button class="match-tab" data-tab="unlocked">12/20 Unlocked</button>
+                    </div>
+                </div>
+                
+                <div class="match-card-container">
+                    <div class="match-card" id="currentMatchCard">
+                        <div class="match-profile">
+                            <div class="profile-image">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="Profile" id="profileImage">
+                            </div>
+                            <div class="profile-info">
+                                <h2 class="profile-name" id="profileName">Sarah Johnson</h2>
+                                <p class="profile-title" id="profileTitle">Senior Product Manager</p>
+                                <div class="profile-tags">
+                                    <span class="tag tech" id="profileTag1">Tech</span>
+                                    <span class="tag fintech" id="profileTag2">Fintech</span>
+                                    <span class="tag ai" id="profileTag3">AI</span>
+                                </div>
+                                <p class="profile-description" id="profileDescription">
+                                    Product Manager with 7+ years experience in SaaS platforms. Looking to connect with engineers and designers for potential collaborations on new ventures in AI and fintech.
+                                </p>
+                                <div class="profile-stats">
+                                    <div class="stat">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span id="profileLocation">San Francisco</span>
+                                    </div>
+                                    <div class="stat">
+                                        <i class="fas fa-users"></i>
+                                        <span id="profileTeam">50-200 emp</span>
+                                    </div>
+                                    <div class="stat">
+                                        <i class="fas fa-chart-line"></i>
+                                        <span id="profileSeries">Series A</span>
+                                    </div>
+                                </div>
+                                <div class="match-strength">
+                                    <span class="match-label">Match Strength</span>
+                                    <span class="match-percentage" id="matchPercentage">92% Compatible</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="swipe-actions">
+                    <button class="swipe-btn pass-btn" id="passBtn">
+                        <span class="btn-emoji">✕</span>
+                        <span class="btn-text">Pass</span>
+                    </button>
+                    <button class="swipe-btn connect-btn" id="connectBtn">
+                        <span class="btn-emoji">🤝</span>
+                        <span class="btn-text">Connect</span>
+                    </button>
+                    <button class="swipe-btn save-btn" id="saveBtn">
+                        <span class="btn-emoji">⭐</span>
+                        <span class="btn-text">Save</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-card">
+                    <h3>Today's Matches</h3>
+                    <div class="today-matches">
+                        <div class="mini-match">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Alex Rivera">
+                            <div class="mini-info">
+                                <h4>Alex Rivera</h4>
+                                <p>UX Designer • Fintech</p>
+                            </div>
+                            <span class="match-score">85%</span>
+                        </div>
+                        <div class="mini-match">
+                            <img src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=40&h=40&fit=crop&crop=face" alt="Taylor Kim">
+                            <div class="mini-info">
+                                <h4>Taylor Kim</h4>
+                                <p>Software Engineer • SaaS</p>
+                            </div>
+                            <span class="match-score">83%</span>
+                        </div>
+                        <div class="mini-match">
+                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=40&h=40&fit=crop&crop=face" alt="Jordan Smith">
+                            <div class="mini-info">
+                                <h4>Jordan Smith</h4>
+                                <p>Investor • Healthcare</p>
+                            </div>
+                            <span class="match-score">78%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-card">
+                    <h3>Recent Connections</h3>
+                    <div class="recent-connections">
+                        <div class="connection-item">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face" alt="Jamie Lee">
+                            <div class="connection-info">
+                                <h4>Jamie Lee</h4>
+                                <p>Connected Jul 28, 2025</p>
+                            </div>
+                            <i class="fas fa-message"></i>
+                        </div>
+                        <div class="connection-item">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=40&h=40&fit=crop&crop=face" alt="Casey Morgan">
+                            <div class="connection-info">
+                                <h4>Casey Morgan</h4>
+                                <p>Connected Jul 28, 2025</p>
+                            </div>
+                            <i class="fas fa-message"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h2 class="card-title">Active Matches</h2>
+                </div>
+                <div class="card-content">
+                    <p>Your AI-powered matches with global enterprises ready for partnership.</p>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">12</span>
+                            <div class="stat-label">New Matches</div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">5</span>
+                            <div class="stat-label">In Progress</div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn">
+                            <i class="fas fa-eye"></i>
+                            View Matches
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h2 class="card-title">Global Reach</h2>
+                </div>
+                <div class="card-content">
+                    <p>Your connections span across multiple countries and industries.</p>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">8</span>
+                            <div class="stat-label">Countries</div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">15</span>
+                            <div class="stat-label">Industries</div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn">
+                            <i class="fas fa-map"></i>
+                            Explore Markets
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h2 class="card-title">Growth Analytics</h2>
+                </div>
+                <div class="card-content">
+                    <p>Track your business growth and partnership success metrics.</p>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">85%</span>
+                            <div class="stat-label">Match Success</div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">$2.5M</span>
+                            <div class="stat-label">Deal Value</div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn">
+                            <i class="fas fa-analytics"></i>
+                            View Analytics
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-messages"></i>
+                    </div>
+                    <h2 class="card-title">Communication Hub</h2>
+                </div>
+                <div class="card-content">
+                    <p>Stay connected with your potential partners and manage conversations.</p>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">7</span>
+                            <div class="stat-label">Unread</div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">23</span>
+                            <div class="stat-label">Total Chats</div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn">
+                            <i class="fas fa-envelope"></i>
+                            View Messages
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recent-activity">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h2 class="card-title">Recent Activity</h2>
+            </div>
+            
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <div class="activity-content">
+                    <h4>New match with TechCorp International</h4>
+                    <p>AI identified a 95% compatibility match for your fintech solution</p>
+                </div>
+                <div class="activity-time">2 hours ago</div>
+            </div>
+            
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-message"></i>
+                </div>
+                <div class="activity-content">
+                    <h4>Message from Global Ventures LLC</h4>
+                    <p>Interested in discussing partnership opportunities</p>
+                </div>
+                <div class="activity-time">5 hours ago</div>
+            </div>
+            
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="activity-content">
+                    <h4>Profile viewed by 3 enterprises</h4>
+                    <p>Your startup profile is gaining traction in the US market</p>
+                </div>
+                <div class="activity-time">1 day ago</div>
+            </div>
+            
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div class="activity-content">
+                    <h4>Deal successfully closed</h4>
+                    <p>Partnership agreement signed with Nordic Solutions</p>
+                </div>
+                <div class="activity-time">3 days ago</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Redirect to new dashboard
+        window.location.href = 'dashboard-new.html';
+        
+        // Add some interactivity to the dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize ConnectPro Matching System
+            initializeConnectPro();
+            
+            // Animate cards on load
+            const cards = document.querySelectorAll('.dashboard-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    card.style.transition = 'all 0.6s ease';
+                    
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 200);
+            });
+            
+            // Add functional click handlers for action buttons
+            document.querySelectorAll('.action-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const text = this.textContent.trim();
+                    
+                    if (text.includes('View Matches')) {
+                        showMatchesModal();
+                    } else if (text.includes('Explore Markets')) {
+                        showMarketsModal();
+                    } else if (text.includes('View Analytics')) {
+                        showAnalyticsModal();
+                    } else if (text.includes('View Messages')) {
+                        showMessagesModal();
+                    }
+                });
+            });
+        });
+
+        // Functional modals for each section
+        function showMatchesModal() {
+            createModal('🤝 Active Matches', `
+                <div class="matches-content">
+                    <div class="match-item">
+                        <div class="company-info">
+                            <div class="company-avatar">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div>
+                                <h4>TechCorp International</h4>
+                                <p>95% Match • Fintech Sector • USA</p>
+                                <div class="match-stats">
+                                    <span class="match-score">🎯 95% Match</span>
+                                    <span class="match-location">🇺🇸 United States</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="match-btn">
+                            <i class="fas fa-handshake"></i>
+                            Connect
+                        </button>
+                    </div>
+                    <div class="match-item">
+                        <div class="company-info">
+                            <div class="company-avatar">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div>
+                                <h4>Global Ventures LLC</h4>
+                                <p>89% Match • E-commerce • UK</p>
+                                <div class="match-stats">
+                                    <span class="match-score">🎯 89% Match</span>
+                                    <span class="match-location">🇬🇧 United Kingdom</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="match-btn">
+                            <i class="fas fa-handshake"></i>
+                            Connect
+                        </button>
+                    </div>
+                    <div class="match-item">
+                        <div class="company-info">
+                            <div class="company-avatar">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <div>
+                                <h4>Nordic Solutions</h4>
+                                <p>87% Match • SaaS • Germany</p>
+                                <div class="match-stats">
+                                    <span class="match-score">🎯 87% Match</span>
+                                    <span class="match-location">🇩🇪 Germany</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="match-btn">
+                            <i class="fas fa-handshake"></i>
+                            Connect
+                        </button>
+                    </div>
+                    <div class="match-item">
+                        <div class="company-info">
+                            <div class="company-avatar">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <h4>Innovation Labs Asia</h4>
+                                <p>82% Match • AI/ML • Singapore</p>
+                                <div class="match-stats">
+                                    <span class="match-score">🎯 82% Match</span>
+                                    <span class="match-location">🇸🇬 Singapore</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="match-btn">
+                            <i class="fas fa-handshake"></i>
+                            Connect
+                        </button>
+                    </div>
+                </div>
+            `);
+        }
+
+        function showMarketsModal() {
+            createModal('Global Markets', `
+                <div class="markets-content">
+                    <div class="market-grid">
+                        <div class="market-card">
+                            <h4>🇺🇸 United States</h4>
+                            <p>42 Active Partners</p>
+                            <span class="market-growth">+15% Growth</span>
+                        </div>
+                        <div class="market-card">
+                            <h4>🇬🇧 United Kingdom</h4>
+                            <p>28 Active Partners</p>
+                            <span class="market-growth">+8% Growth</span>
+                        </div>
+                        <div class="market-card">
+                            <h4>🇩🇪 Germany</h4>
+                            <p>35 Active Partners</p>
+                            <span class="market-growth">+12% Growth</span>
+                        </div>
+                        <div class="market-card">
+                            <h4>🇯🇵 Japan</h4>
+                            <p>19 Active Partners</p>
+                            <span class="market-growth">+22% Growth</span>
+                        </div>
+                    </div>
+                </div>
+            `);
+        }
+
+        function showAnalyticsModal() {
+            createModal('Growth Analytics', `
+                <div class="analytics-content">
+                    <div class="chart-placeholder">
+                        <h4>📊 Partnership Success Rate</h4>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 85%;">85%</div>
+                        </div>
+                    </div>
+                    <div class="chart-placeholder">
+                        <h4>💰 Revenue Growth</h4>
+                        <div class="revenue-stats">
+                            <div class="stat">
+                                <span>This Month</span>
+                                <strong>$450K</strong>
+                            </div>
+                            <div class="stat">
+                                <span>Last Month</span>
+                                <strong>$380K</strong>
+                            </div>
+                            <div class="stat">
+                                <span>Growth</span>
+                                <strong style="color: #4CAF50;">+18.4%</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-placeholder">
+                        <h4>🌍 Regional Performance</h4>
+                        <div class="region-stats">
+                            <div>North America: 45%</div>
+                            <div>Europe: 35%</div>
+                            <div>Asia-Pacific: 20%</div>
+                        </div>
+                    </div>
+                </div>
+            `);
+        }
+
+        function showMessagesModal() {
+            createModal('💬 Message Center', `
+                <div class="messages-content">
+                    <div class="message-item unread">
+                        <div class="sender-info">
+                            <div class="sender-avatar">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div>
+                                <h4>John Doe - TechCorp</h4>
+                                <p>💼 Interested in partnership discussion for our fintech expansion...</p>
+                                <div class="message-meta">
+                                    <span class="time">⏰ 2 hours ago</span>
+                                    <span class="message-type">📧 Partnership Inquiry</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message-actions">
+                            <div class="unread-badge">New</div>
+                            <button class="reply-btn">
+                                <i class="fas fa-reply"></i>
+                                Reply
+                            </button>
+                        </div>
+                    </div>
+                    <div class="message-item">
+                        <div class="sender-info">
+                            <div class="sender-avatar">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <div>
+                                <h4>Sarah Miller - Global Ventures</h4>
+                                <p>📋 Thanks for the proposal. Let's schedule a call to discuss terms...</p>
+                                <div class="message-meta">
+                                    <span class="time">⏰ 5 hours ago</span>
+                                    <span class="message-type">📞 Meeting Request</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message-actions">
+                            <button class="reply-btn">
+                                <i class="fas fa-reply"></i>
+                                Reply
+                            </button>
+                        </div>
+                    </div>
+                    <div class="message-item">
+                        <div class="sender-info">
+                            <div class="sender-avatar">
+                                <i class="fas fa-user-cog"></i>
+                            </div>
+                            <div>
+                                <h4>Alex Kumar - Nordic Solutions</h4>
+                                <p>📑 Deal documents are ready for review. Please check the attached files...</p>
+                                <div class="message-meta">
+                                    <span class="time">⏰ 1 day ago</span>
+                                    <span class="message-type">📁 Document Delivery</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message-actions">
+                            <button class="reply-btn">
+                                <i class="fas fa-reply"></i>
+                                Reply
+                            </button>
+                        </div>
+                    </div>
+                    <div class="message-item">
+                        <div class="sender-info">
+                            <div class="sender-avatar">
+                                <i class="fas fa-user-astronaut"></i>
+                            </div>
+                            <div>
+                                <h4>Lisa Chen - Innovation Labs</h4>
+                                <p>🚀 Your AI solution looks promising! We'd like to explore collaboration...</p>
+                                <div class="message-meta">
+                                    <span class="time">⏰ 2 days ago</span>
+                                    <span class="message-type">🤝 Collaboration Interest</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message-actions">
+                            <button class="reply-btn">
+                                <i class="fas fa-reply"></i>
+                                Reply
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `);
+        }
+
+        function createModal(title, content) {
+            // Remove existing modal if any
+            const existingModal = document.querySelector('.dashboard-modal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+
+            // Create modal
+            const modal = document.createElement('div');
+            modal.className = 'dashboard-modal';
+            modal.innerHTML = `
+                <div class="modal-overlay"></div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>${title}</h2>
+                        <button class="modal-close">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        ${content}
+                    </div>
+                </div>
+            `;
+
+            // Add modal styles
+            const style = document.createElement('style');
+            style.textContent = `
+                .dashboard-modal {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 10000;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .modal-overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.8);
+                    backdrop-filter: blur(10px);
+                }
+                .modal-content {
+                    position: relative;
+                    background: var(--bg-charcoal);
+                    border: 2px solid var(--gold-primary);
+                    border-radius: 20px;
+                    max-width: 800px;
+                    max-height: 80vh;
+                    overflow-y: auto;
+                    width: 90%;
+                    animation: modalSlideIn 0.3s ease-out;
+                }
+                .modal-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 2rem;
+                    border-bottom: 1px solid var(--gold-primary);
+                }
+                .modal-header h2 {
+                    color: var(--gold-primary);
+                    margin: 0;
+                    font-family: 'Montserrat', sans-serif;
+                }
+                .modal-close {
+                    background: none;
+                    border: none;
+                    color: var(--gold-primary);
+                    font-size: 2rem;
+                    cursor: pointer;
+                    padding: 0;
+                    width: 40px;
+                    height: 40px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    transition: all 0.3s ease;
+                }
+                .modal-close:hover {
+                    background: var(--gold-primary);
+                    color: var(--bg-charcoal);
+                }
+                .modal-body {
+                    padding: 2rem;
+                }
+                .match-item, .message-item {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 1rem;
+                    border: 1px solid rgba(212, 175, 55, 0.3);
+                    border-radius: 12px;
+                    margin-bottom: 1rem;
+                    background: rgba(255, 255, 255, 0.05);
+                }
+                .company-info, .sender-info {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    flex: 1;
+                }
+                .company-avatar, .sender-avatar {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 12px;
+                    background: linear-gradient(135deg, var(--gold-primary), var(--bronze-secondary));
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: var(--bg-charcoal);
+                    font-size: 1.2rem;
+                    flex-shrink: 0;
+                }
+                .company-info h4, .sender-info h4 {
+                    margin: 0;
+                    color: var(--white-text);
+                    font-size: 1rem;
+                }
+                .company-info p, .sender-info p {
+                    margin: 0.3rem 0 0 0;
+                    color: var(--gray-light);
+                    font-size: 0.9rem;
+                    line-height: 1.4;
+                }
+                .match-stats, .message-meta {
+                    display: flex;
+                    gap: 1rem;
+                    margin-top: 0.5rem;
+                    flex-wrap: wrap;
+                }
+                .match-score, .match-location, .time, .message-type {
+                    font-size: 0.8rem;
+                    color: var(--bronze-secondary);
+                    background: rgba(176, 141, 87, 0.1);
+                    padding: 0.2rem 0.5rem;
+                    border-radius: 4px;
+                }
+                .match-btn, .reply-btn {
+                    background: linear-gradient(135deg, var(--gold-primary), var(--bronze-secondary));
+                    color: var(--bg-charcoal);
+                    border: none;
+                    padding: 0.6rem 1rem;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    font-weight: 600;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    transition: all 0.3s ease;
+                    font-size: 0.9rem;
+                }
+                .match-btn:hover, .reply-btn:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+                }
+                .message-actions {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-end;
+                    gap: 0.5rem;
+                }
+                .market-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                    gap: 1rem;
+                }
+                .market-card {
+                    background: rgba(255, 255, 255, 0.05);
+                    border: 1px solid rgba(212, 175, 55, 0.3);
+                    border-radius: 12px;
+                    padding: 1.5rem;
+                    text-align: center;
+                }
+                .market-card h4 {
+                    margin: 0 0 0.5rem 0;
+                    color: var(--white-text);
+                }
+                .market-growth {
+                    color: #4CAF50;
+                    font-weight: 600;
+                    font-size: 0.9rem;
+                }
+                .progress-bar {
+                    background: rgba(255, 255, 255, 0.1);
+                    border-radius: 10px;
+                    height: 20px;
+                    overflow: hidden;
+                    margin: 1rem 0;
+                }
+                .progress {
+                    background: linear-gradient(135deg, var(--gold-primary), var(--bronze-secondary));
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: var(--bg-charcoal);
+                    font-weight: 600;
+                    font-size: 0.9rem;
+                }
+                .revenue-stats, .region-stats {
+                    display: flex;
+                    justify-content: space-around;
+                    flex-wrap: wrap;
+                    gap: 1rem;
+                    margin: 1rem 0;
+                }
+                .stat {
+                    text-align: center;
+                }
+                .stat span {
+                    display: block;
+                    color: var(--gray-light);
+                    font-size: 0.9rem;
+                }
+                .stat strong {
+                    color: var(--gold-primary);
+                    font-size: 1.2rem;
+                }
+                .unread {
+                    border-color: var(--gold-primary);
+                    background: rgba(212, 175, 55, 0.1);
+                }
+                .unread-badge {
+                    background: var(--gold-primary);
+                    color: var(--bg-charcoal);
+                    padding: 0.3rem 0.8rem;
+                    border-radius: 12px;
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                }
+                .time {
+                    color: var(--bronze-secondary);
+                    font-size: 0.8rem;
+                }
+                @keyframes modalSlideIn {
+                    from { transform: scale(0.8); opacity: 0; }
+                    to { transform: scale(1); opacity: 1; }
+                }
+            `;
+            
+            if (!document.querySelector('#dashboard-modal-styles')) {
+                style.id = 'dashboard-modal-styles';
+                document.head.appendChild(style);
+            }
+
+            document.body.appendChild(modal);
+
+            // Close modal functionality
+            const closeBtn = modal.querySelector('.modal-close');
+            const overlay = modal.querySelector('.modal-overlay');
+            
+            closeBtn.addEventListener('click', () => modal.remove());
+            overlay.addEventListener('click', () => modal.remove());
+            
+            // Close on Escape
+            document.addEventListener('keydown', function escClose(e) {
+                if (e.key === 'Escape') {
+                    modal.remove();
+                    document.removeEventListener('keydown', escClose);
+                }
+            });
+        }
+
+        // ConnectPro Matching System
+        function initializeConnectPro() {
+            const matchCard = document.getElementById('currentMatchCard');
+            const passBtn = document.getElementById('passBtn');
+            const connectBtn = document.getElementById('connectBtn');
+            const saveBtn = document.getElementById('saveBtn');
+            const matchTabs = document.querySelectorAll('.match-tab');
+
+            // Sample profile data
+            const profiles = [
+                {
+                    name: "Sarah Johnson",
+                    title: "Senior Product Manager",
+                    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+                    tags: ["Tech", "Fintech", "AI"],
+                    description: "Product Manager with 7+ years experience in SaaS platforms. Looking to connect with engineers and designers for potential collaborations on new ventures in AI and fintech.",
+                    location: "San Francisco",
+                    team: "50-200 emp",
+                    series: "Series A",
+                    matchPercentage: "92% Compatible"
+                },
+                {
+                    name: "Michael Chen",
+                    title: "Investment Director",
+                    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+                    tags: ["Investor", "SaaS", "Healthcare"],
+                    description: "Investment director at HealthTech Ventures with $500M AUM. Actively seeking innovative healthcare startups with strong AI/ML components for Series A funding.",
+                    location: "New York",
+                    team: "Investment Firm",
+                    series: "Series A-C",
+                    matchPercentage: "89% Compatible"
+                },
+                {
+                    name: "Elena Rodriguez",
+                    title: "CTO & Co-founder",
+                    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face",
+                    tags: ["Founder", "DeepTech", "Enterprise"],
+                    description: "CTO at AI-powered logistics platform serving Fortune 500 companies. Looking for strategic partnerships and potential acquisition targets in supply chain automation.",
+                    location: "London",
+                    team: "200+ emp",
+                    series: "Series B",
+                    matchPercentage: "94% Compatible"
+                },
+                {
+                    name: "David Kim",
+                    title: "Head of Partnerships",
+                    image: "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=150&h=150&fit=crop&crop=face",
+                    tags: ["Partnerships", "Fintech", "Global"],
+                    description: "Head of Global Partnerships at leading fintech unicorn. Seeking innovative startups for strategic partnerships, integrations, and joint ventures in emerging markets.",
+                    location: "Singapore",
+                    team: "500+ emp",
+                    series: "Unicorn",
+                    matchPercentage: "86% Compatible"
+                }
+            ];
+
+            let currentProfileIndex = 0;
+            let isAnimating = false;
+
+            // Initialize first profile
+            updateProfile(profiles[currentProfileIndex]);
+
+            // Tab switching
+            matchTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    matchTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                });
+            });
+
+            // Swipe button handlers
+            passBtn.addEventListener('click', () => handleSwipe('pass'));
+            connectBtn.addEventListener('click', () => handleSwipe('connect'));
+            saveBtn.addEventListener('click', () => handleSwipe('save'));
+
+            // Touch/mouse swipe functionality
+            let startX = 0;
+            let currentX = 0;
+            let isDragging = false;
+
+            matchCard.addEventListener('mousedown', startDrag);
+            matchCard.addEventListener('touchstart', startDrag);
+            
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('touchmove', drag);
+            
+            document.addEventListener('mouseup', endDrag);
+            document.addEventListener('touchend', endDrag);
+
+            function startDrag(e) {
+                if (isAnimating) return;
+                isDragging = true;
+                startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+                matchCard.style.transition = 'none';
+            }
+
+            function drag(e) {
+                if (!isDragging || isAnimating) return;
+                e.preventDefault();
+                currentX = (e.type === 'mousemove' ? e.clientX : e.touches[0].clientX) - startX;
+                
+                const rotation = currentX * 0.1;
+                const opacity = 1 - Math.abs(currentX) / 300;
+                
+                matchCard.style.transform = `translateX(${currentX}px) rotate(${rotation}deg)`;
+                matchCard.style.opacity = Math.max(0.3, opacity);
+
+                // Visual feedback
+                if (currentX > 50) {
+                    matchCard.classList.add('swiping-right');
+                    matchCard.classList.remove('swiping-left');
+                } else if (currentX < -50) {
+                    matchCard.classList.add('swiping-left');
+                    matchCard.classList.remove('swiping-right');
+                } else {
+                    matchCard.classList.remove('swiping-left', 'swiping-right');
+                }
+            }
+
+            function endDrag() {
+                if (!isDragging || isAnimating) return;
+                isDragging = false;
+                
+                matchCard.style.transition = 'all 0.3s ease';
+                
+                if (Math.abs(currentX) > 100) {
+                    // Trigger swipe action
+                    if (currentX > 0) {
+                        handleSwipe('connect');
+                    } else {
+                        handleSwipe('pass');
+                    }
+                } else {
+                    // Snap back to center
+                    matchCard.style.transform = 'translateX(0) rotate(0deg)';
+                    matchCard.style.opacity = '1';
+                    matchCard.classList.remove('swiping-left', 'swiping-right');
+                }
+                
+                currentX = 0;
+            }
+
+            function handleSwipe(action) {
+                if (isAnimating) return;
+                isAnimating = true;
+
+                const actionMessages = {
+                    pass: 'Passed on this match',
+                    connect: 'Connection request sent!',
+                    save: 'Saved for later review'
+                };
+
+                const actionColors = {
+                    pass: '#f44336',
+                    connect: '#D4AF37',
+                    save: '#4caf50'
+                };
+
+                // Show action feedback
+                showActionFeedback(actionMessages[action], actionColors[action]);
+
+                // Animate card out
+                const direction = action === 'pass' ? -1 : 1;
+                matchCard.style.transform = `translateX(${direction * 300}px) rotate(${direction * 20}deg)`;
+                matchCard.style.opacity = '0';
+
+                setTimeout(() => {
+                    // Move to next profile
+                    currentProfileIndex = (currentProfileIndex + 1) % profiles.length;
+                    updateProfile(profiles[currentProfileIndex]);
+                    
+                    // Reset card position
+                    matchCard.style.transition = 'none';
+                    matchCard.style.transform = 'translateX(0) rotate(0deg)';
+                    matchCard.style.opacity = '1';
+                    matchCard.classList.remove('swiping-left', 'swiping-right');
+                    
+                    setTimeout(() => {
+                        matchCard.style.transition = 'all 0.3s ease';
+                        isAnimating = false;
+                    }, 50);
+                }, 300);
+            }
+
+            function updateProfile(profile) {
+                document.getElementById('profileImage').src = profile.image;
+                document.getElementById('profileName').textContent = profile.name;
+                document.getElementById('profileTitle').textContent = profile.title;
+                document.getElementById('profileTag1').textContent = profile.tags[0];
+                document.getElementById('profileTag2').textContent = profile.tags[1];
+                document.getElementById('profileTag3').textContent = profile.tags[2];
+                document.getElementById('profileDescription').textContent = profile.description;
+                document.getElementById('profileLocation').textContent = profile.location;
+                document.getElementById('profileTeam').textContent = profile.team;
+                document.getElementById('profileSeries').textContent = profile.series;
+                document.getElementById('matchPercentage').textContent = profile.matchPercentage;
+            }
+
+            function showActionFeedback(message, color) {
+                const feedback = document.createElement('div');
+                feedback.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: ${color};
+                    color: white;
+                    padding: 1rem 2rem;
+                    border-radius: 10px;
+                    font-weight: 600;
+                    z-index: 10000;
+                    animation: fadeInOut 2s ease-in-out forwards;
+                `;
+                feedback.textContent = message;
+                
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes fadeInOut {
+                        0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                        20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                        80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                        100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                    }
+                `;
+                
+                if (!document.querySelector('#feedback-styles')) {
+                    style.id = 'feedback-styles';
+                    document.head.appendChild(style);
+                }
+
+                document.body.appendChild(feedback);
+                
+                setTimeout(() => {
+                    if (feedback.parentNode) {
+                        feedback.parentNode.removeChild(feedback);
+                    }
+                }, 2000);
+            }
+        }
+    </script>
+    <script src="page-transition.js"></script>
+</body>
+</html>

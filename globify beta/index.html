@@ -16,18 +16,18 @@
 <body>
   <header>
     <nav>
-      <div class="logo">
-        <img src="/beta/assets/logo.gif" alt="Globify Logo" class="logo-image" />
-        <span>Globify</span>
+      <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+        <img src="assets/logo.gif" alt="Globify Logo" class="logo-image" />
+        <span class="logo-text">Globify</span>
       </div>
       <ul>
         <li><a href="#features">Features</a></li>
         <li><a href="#pricing">Pricing</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <div class="nav-buttons">
-        <a href="/" class="btn-back">← Back to Main</a>
-        <button class="get-started">Get Started</button>
+      <div style="display:flex; gap:10px; align-items:center;">
+        <button class="btn-outline" onclick="window.location.href='/'">Back to Home</button>
+        <button class="get-started" onclick="window.location.href='/beta/login.html'">Get Started</button>
       </div>
     </nav>
   </header>
@@ -43,8 +43,8 @@
         <h1>Connecting Startups &<br>Enterprises Without<br><span>Borders</span></h1>
         <p>AI-powered B2B matchmaking platform that transforms global business partnerships through intelligent connections and seamless collaboration.</p>
         <div class="hero-buttons">
-          <button class="btn-primary">Start Matching</button>
-          <button class="btn-outline">Enterprise Solutions</button>
+          <button class="btn-primary" onclick="window.location.href='/beta/dashboard-new.html'">Start Matching</button>
+          <button class="btn-outline" id="enterpriseBtn">Enterprise Solutions</button>
         </div>
       </div>
       <div class="hero-visual">
@@ -219,7 +219,7 @@
           <li><i class="fas fa-check"></i> AI Matchmaking</li>
           <li><i class="fas fa-times"></i> Limited support</li>
         </ul>
-        <button class="pricing-btn">Get Started</button>
+        <button class="pricing-btn" onclick="window.location.href='/beta/login.html'">Get Started</button>
       </div>
 
       <!-- Starter Plan -->
@@ -238,7 +238,7 @@
           <li><i class="fas fa-check"></i> Premium support</li>
           <li><i class="fas fa-check"></i> Advanced smart contracts</li>
         </ul>
-        <button class="pricing-btn primary">Get Started</button>
+        <button class="pricing-btn primary" onclick="window.location.href='/beta/login.html'">Get Started</button>
       </div>
 
       <!-- Pro Plan -->
@@ -340,10 +340,188 @@
   </div>
 </section>
 
+  <!-- Floating AI Chatbot Widget -->
+  <div class="chatbot-widget" id="chatbotWidget">
+    <!-- Chat Toggle Button -->
+    <button class="chat-toggle" id="chatToggle">
+      <i class="fas fa-robot"></i>
+      <span class="notification-dot"></span>
+    </button>
+    
+    <!-- Chat Container -->
+    <div class="chat-container" id="chatContainer">
+      <!-- Chat Header -->
+      <div class="chat-header">
+        <div class="ai-avatar">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="ai-info">
+          <h3>Globify AI Assistant</h3>
+          <span class="status">
+            <span class="status-dot"></span>
+            Online
+          </span>
+        </div>
+        <div class="chat-actions">
+          <button class="action-btn" id="fullscreenChat" title="Fullscreen">
+            <i class="fas fa-expand"></i>
+          </button>
+          <button class="action-btn" id="minimizeChat" title="Minimize">
+            <i class="fas fa-minus"></i>
+          </button>
+          <button class="action-btn" id="closeChat" title="Close">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Chat Messages -->
+      <div class="chat-messages" id="chatMessages">
+        <div class="message ai-message">
+          <div class="message-avatar">
+            <i class="fas fa-robot"></i>
+          </div>
+          <div class="message-content">
+            <p>Namaste! I'm your Globify AI Assistant, your comprehensive guide for Indian startups and businesses. I can help you with everything from business planning and registration to funding strategies, market research, legal compliance, scaling operations, and global expansion. Whether you're just starting or ready to go international, I'm here to guide you every step of the way. How can I assist you today?</p>
+            <span class="message-time">Just now</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="quick-actions">
+        <button class="quick-btn" data-message="What is the first step to start a business in India?">
+          <i class="fas fa-rocket"></i>
+          Start Business
+        </button>
+        <button class="quick-btn" data-message="How can I raise funds for my startup?">
+          <i class="fas fa-coins"></i>
+          Funding
+        </button>
+        <button class="quick-btn" data-message="How do I research my market?">
+          <i class="fas fa-chart-line"></i>
+          Market Research
+        </button>
+        <button class="quick-btn" data-message="When should I expand internationally?">
+          <i class="fas fa-globe"></i>
+          Global Expansion
+        </button>
+      </div>
+
+      <!-- Chat Input -->
+      <div class="chat-input-container">
+        <div class="chat-input">
+          <input 
+            type="text" 
+            id="messageInput" 
+            placeholder="Ask me anything about Globify..."
+            autocomplete="off"
+          >
+          <button id="sendButton" class="send-btn">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+        <div class="input-suggestions" id="suggestions">
+          <!-- Dynamic suggestions will appear here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Enterprise Solutions Modal -->
+  <div class="enterprise-modal" id="enterpriseModal">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Enterprise Solutions</h2>
+        <button class="modal-close" id="modalClose">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="enterprise-intro">
+          <p>Unlock the full potential of global business partnerships with our premium enterprise solutions.</p>
+        </div>
+        
+        <div class="pricing-tiers">
+          <div class="tier-card">
+            <div class="tier-header">
+              <h3>Growth Enterprise</h3>
+              <div class="tier-price">₹50,000<span>/month</span></div>
+            </div>
+            <ul class="tier-features">
+              <li><i class="fas fa-check"></i> Up to 500 employees</li>
+              <li><i class="fas fa-check"></i> Advanced AI matching</li>
+              <li><i class="fas fa-check"></i> Dedicated account manager</li>
+              <li><i class="fas fa-check"></i> Priority support</li>
+              <li><i class="fas fa-check"></i> Custom integrations</li>
+            </ul>
+          </div>
+          
+          <div class="tier-card featured">
+            <div class="tier-badge">MOST POPULAR</div>
+            <div class="tier-header">
+              <h3>Scale Enterprise</h3>
+              <div class="tier-price">₹1,50,000<span>/month</span></div>
+            </div>
+            <ul class="tier-features">
+              <li><i class="fas fa-check"></i> Up to 2000 employees</li>
+              <li><i class="fas fa-check"></i> White-label solutions</li>
+              <li><i class="fas fa-check"></i> Global compliance support</li>
+              <li><i class="fas fa-check"></i> Advanced analytics & BI</li>
+              <li><i class="fas fa-check"></i> Multi-region deployment</li>
+              <li><i class="fas fa-check"></i> Custom API development</li>
+            </ul>
+          </div>
+          
+          <div class="tier-card">
+            <div class="tier-header">
+              <h3>Global Enterprise</h3>
+              <div class="tier-price">₹3,00,000<span>/month</span></div>
+            </div>
+            <ul class="tier-features">
+              <li><i class="fas fa-check"></i> Unlimited employees</li>
+              <li><i class="fas fa-check"></i> Full platform customization</li>
+              <li><i class="fas fa-check"></i> 24/7 dedicated support team</li>
+              <li><i class="fas fa-check"></i> On-premise deployment</li>
+              <li><i class="fas fa-check"></i> Advanced security features</li>
+              <li><i class="fas fa-check"></i> Global regulatory compliance</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="contact-info">
+          <p>Need a custom solution? Our enterprise team will work with you to create the perfect package.</p>
+          <div class="contact-details">
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <span>enterprise@globify.com</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <span>+91 80-4567-8900</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="modal-actions">
+          <button class="btn-secondary" id="contactSales">
+            <i class="fas fa-envelope"></i>
+            Contact Sales Team
+          </button>
+          <button class="btn-primary" onclick="window.location.href='/beta/login.html'">
+            <i class="fas fa-rocket"></i>
+            Start Enterprise Trial
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <footer class="site-footer">
   <div class="footer-container">
     <div class="footer-column">
-              <h3><img src="/beta/logo.gif" alt="Logo" class="logo-icon" /> Globify</h3>
+      <h3><img src="logo.gif" alt="Logo" class="logo-icon" /> Globify</h3>
       <p>AI-powered B2B matchmaking platform connecting startups with global enterprise clients.</p>
       <div class="social-icons">
         <a href="#"><i class="fa fa-instagram"></i></a>
@@ -572,6 +750,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<script src="/beta/script.js"></script>
+  <script src="script.js"></script>
+  <script src="page-transition.js"></script>
 </body>
 </html>
