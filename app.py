@@ -10,7 +10,7 @@ app.secret_key = 'your-secret-key-here'  # Change this to a secure secret key
 db_config = {
     'host': 'localhost',
     'user': 'root',  # Change to your MySQL username
-    'password': 'Krish2006',   # Change to your MySQL password
+    'password': 'some pswd',   # Change to your MySQL password
     'database': 'globify_db'
 }
 
