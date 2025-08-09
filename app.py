@@ -7,10 +7,10 @@ app = Flask(__name__)
 app.secret_key = 'your-secret-key-here'  
 
 db_config = {
-    'host': os.getenv('DB_HOST', 'localhost'),
-    'user': os.getenv('DB_USER', 'root'),
-    'password': os.getenv('DB_PASSWORD', 'Krish2006'),
-    'database': os.getenv('DB_NAME', 'globify_db')
+    'host': 'localhost',
+    'user': 'root',  # Change to your MySQL username
+    'password': 'some pswd',   # Change to your MySQL password
+    'database': 'globify_db'
 }
 
 def create_database():
