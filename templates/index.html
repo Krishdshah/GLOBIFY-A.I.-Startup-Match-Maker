@@ -1,0 +1,366 @@
+<!-- Slide 1: Landing Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Globify</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/chatbot/chatbot.css">
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="logo">Globify</div>
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="auth-buttons">
+        <a href="{{ url_for('login') }}" class="btn-outline">Login</a>
+        <a href="{{ url_for('signup') }}" class="get-started">Sign Up</a>
+        <a href="{{ url_for('beta_model') }}" class="btn-outline">Beta</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+  <div class="hero-content">
+    <div class="text">
+      <h1>Connecting Startups<br>to Global Clients —<br><span>Faster, Smarter.</span></h1>
+      <p>AI-powered matchmaking that builds cross-border partnerships in days, not months.</p>
+      <div class="buttons">
+        <button class="btn-primary">Find Clients</button>
+        <button class="btn-outline">Join as Enterprise</button>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="{{ url_for('static', filename='assets/logo.gif') }}" alt="AI graphic" />
+    </div>
+  </div>
+</section>
+
+<section class="how-it-works">
+  <h2>How It Works</h2>
+  <p class="subtitle">Our AI-powered platform streamlines the global business matchmaking process.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-icon">👤</div>
+      <h3>Sign up & Verify Profile</h3>
+      <p>Complete your company profile and get verified through our secure identity system.</p>
+    </div>
+    <div class="step">
+      <div class="step-icon">🤖</div>
+      <h3>AI Matchmaking</h3>
+      <p>Our AI analyzes thousands of data points to find your perfect business matches globally.</p>
+    </div>
+    <div class="step">
+      <div class="step-icon">📋</div>
+      <h3>Deal Closure with Smart Contracts <b>[coming soon]</b></h3>
+      <p>Secure and transparent deals with our blockchain-powered smart contract system.</p>
+    </div>
+  </div>
+</section>
+
+
+    <!--slide 2a: Feature Section-->
+  <section class="platform-features-section">
+  <div class="container">
+    <div class="header">
+      <h2>Platform Features</h2>
+      <p>Advanced tools designed to streamline global B2B partnerships.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-zap"
+          >
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </div>
+        <h3>AI-Powered Matchmaking</h3>
+        <p>
+          Our proprietary algorithm analyzes over 200 data points to find your
+          ideal business matches with 95% accuracy.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-zap"
+          >
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </div>
+        <h3>Dynamic Trust Score</h3>
+        <p>
+          Real-time trust metrics that verify and validate potential partners
+          before you invest time in discussions.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-zap"
+          >
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </div>
+        <h3>Auto-Generated Smart Contracts</h3>
+        <p>
+          Legally sound, customizable contracts that adapt to your specific
+          business needs and jurisdictions.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-zap"
+          >
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </div>
+        <h3>AI Negotiation Assistant</h3>
+        <p>
+          Get real-time suggestions during negotiations to help you secure the
+          best possible terms.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-zap"
+          >
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </div>
+        <h3>Cross-Cultural Communication Layer</h3>
+        <p>
+          AI-powered communication tools that bridge cultural gaps and prevent
+          misunderstandings.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-zap"
+          >
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </div>
+        <h3>Industry Insight Dashboard</h3>
+        <p>
+          Access real-time market data and trends specific to your industry and
+          target regions.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section class="stats">
+    <div><strong>60%</strong><br>Faster Deals</div>
+    <div><strong>500+</strong><br>Global Enterprises</div>
+    <div><strong>50+</strong><br>Countries Verified</div>
+  </section>
+
+  <!-- Slide 2b: Pricing -->
+  <section class="pricing-section" id="pricing">
+    <h2>Transparent Pricing</h2>
+    <p class="subtitle">Choose the plan that fits your business needs.</p>
+
+    <div class="pricing-cards">
+      <!-- Free Plan -->
+      <div class="card">
+        <h3>Free</h3>
+        <p class="price">$0<span>/month</span></p>
+        <ul>
+          <li>✔ 3 matches/month</li>
+          <li>✔ Basic profile</li>
+          <li>✔ Email support</li>
+          <li>✖ Smart contracts</li>
+          <li>✖ AI assistant</li>
+        </ul>
+        <button class="disabled" disabled>Get Started</button>
+      </div>
+
+      <!-- Starter Plan -->
+      <div class="card">
+        <h3>Starter</h3>
+        <p class="price">$49<span>/month</span></p>
+        <ul>
+          <li>✔ 10 matches/month</li>
+          <li>✔ Enhanced profile</li>
+          <li>✔ Priority support</li>
+          <li>✔ Basic smart contracts</li>
+          <li>✖ AI assistant</li>
+        </ul>
+        <button>Get Started</button>
+      </div>
+
+      <!-- Pro Plan -->
+      <div class="card featured">
+        <div class="tag">POPULAR</div>
+        <h3>Pro</h3>
+        <p class="price">$199<span>/month</span></p>
+        <ul>
+          <li>✔ Unlimited matches</li>
+          <li>✔ Premium profile</li>
+          <li>✔ 24/7 support</li>
+          <li>✔ Advanced smart contracts</li>
+          <li>✔ Basic AI assistant</li>
+        </ul>
+        <button>Get Started</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 3: Contact and Footer -->
+  <section class="contact" id="contact">
+    <h2>Ready to Connect Globally?</h2>
+    <div class="contact-wrapper">
+      <form action="{{ url_for('contact') }}" method="POST">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Your email" required>
+        <input type="text" name="company" placeholder="Your company">
+        <select name="role">
+          <option value="">Select your role</option>
+          <option value="Founder">Founder</option>
+          <option value="Enterprise">Enterprise</option>
+          <option value="Investor">Investor</option>
+        </select>
+        <textarea name="message" placeholder="Tell us about your needs"></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <div class="global-presence">
+        <div class="map-background"></div>
+        <div class="presence-content">
+          <h3>Global Presence</h3>
+          <p>Our network spans 50+ countries, connecting businesses worldwide.</p>
+          <div class="presence-stats">
+            <strong>10,000+</strong> Businesses Connected<br>
+            <strong>$500M+</strong> Deals Facilitated
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-column">
+              <h3><img src="static/assets/logo.gif" alt="Logo" class="logo-icon" /> Globify</h3>
+      <p>AI-powered B2B matchmaking platform connecting startups with global enterprise clients.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fa fa-instagram"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-whatsapp"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-column">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Partners</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#">Documentation</a></li>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Case Studies</a></li>
+        <li><a href="#">API</a></li>
+        <li><a href="#">Community</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Security</a></li>
+        <li><a href="#">Compliance</a></li>
+        <li><a href="#">GDPR</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© Under Construction Globify. All rights reserved.</p>
+    <div class="bottom-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+  <script src="/chatbot/chatbot.js"></script>
+</body>
+</html>

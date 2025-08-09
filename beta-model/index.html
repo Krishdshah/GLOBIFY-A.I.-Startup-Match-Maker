@@ -1,0 +1,577 @@
+<!-- Slide 1: Landing Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Globify - AI-Powered B2B Matchmaking Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <!-- Leaflet CSS for interactive world map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="/beta/styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="/beta/assets/logo.gif" alt="Globify Logo" class="logo-image" />
+        <span>Globify</span>
+      </div>
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-buttons">
+        <a href="/" class="btn-back">← Back to Main</a>
+        <button class="get-started">Get Started</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Interactive World Map Section -->
+  <section class="interactive-map-section">
+    <div id="globifyMap"></div>
+  </section>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Connecting Startups &<br>Enterprises Without<br><span>Borders</span></h1>
+        <p>AI-powered B2B matchmaking platform that transforms global business partnerships through intelligent connections and seamless collaboration.</p>
+        <div class="hero-buttons">
+          <button class="btn-primary">Start Matching</button>
+          <button class="btn-outline">Enterprise Solutions</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="interactive-world-map">
+          <div id="map" class="hero-map-container"></div>
+          <!-- Floating orb similar to logo -->
+          <div class="floating-orb">
+            <div class="orb-inner"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Key Features Section -->
+<section class="features-section" id="features">
+  <div class="container">
+    <h2>Platform Features</h2>
+    <p class="subtitle">Advanced tools designed to streamline global B2B partnerships.</p>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-brain"></i>
+        </div>
+        <h3>AI-Powered Matchmaking</h3>
+        <p>Our proprietary algorithm analyzes over 200 data points to find your ideal business matches with 95% accuracy.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h3>Dynamic Trust Score</h3>
+        <p>Real-time trust metrics that verify and validate potential partners before you invest time in discussions.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-file-contract"></i>
+        </div>
+        <h3>Smart Contracts</h3>
+        <p>Auto-generated, legally sound contracts that adapt to your specific business needs and jurisdictions.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-handshake"></i>
+        </div>
+        <h3>AI Negotiation Assistant</h3>
+        <p>Get real-time suggestions during negotiations to help you secure the best possible terms.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-globe-americas"></i>
+        </div>
+        <h3>Cross-Cultural Communication</h3>
+        <p>AI-powered tools that bridge cultural gaps and prevent misunderstandings in global partnerships.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h3>Industry Insights</h3>
+        <p>Access real-time market data and trends specific to your industry and target regions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- Global Reach Section -->
+<section class="global-reach">
+  <div class="container">
+    <div class="global-content">
+      <div class="global-map">
+        <svg viewBox="0 0 1000 500" class="premium-world-map">
+          <rect width="1000" height="500" fill="#0D0D0D"/>
+          
+          <!-- Detailed World Map -->
+          <!-- North America -->
+          <path d="M150 200 Q180 180 220 190 Q260 185 300 200 Q320 220 310 250 Q290 270 260 265 Q220 260 190 250 Q150 230 150 200 Z" 
+                fill="#D4AF37" stroke="#B08D57" stroke-width="1" opacity="0.8"/>
+          
+          <!-- South America -->
+          <path d="M250 300 Q270 280 290 295 Q300 330 295 370 Q290 410 275 415 Q260 410 250 380 Q240 340 245 310 Q245 300 250 300 Z" 
+                fill="#D4AF37" stroke="#B08D57" stroke-width="1" opacity="0.8"/>
+          
+          <!-- Europe -->
+          <path d="M450 180 Q480 175 520 185 Q560 180 580 195 Q570 215 540 220 Q510 215 480 210 Q450 205 450 180 Z" 
+                fill="#D4AF37" stroke="#B08D57" stroke-width="1" opacity="0.8"/>
+          
+          <!-- Africa -->
+          <path d="M480 240 Q510 235 540 250 Q560 270 555 310 Q550 350 535 380 Q520 390 500 385 Q480 370 475 340 Q470 290 480 240 Z" 
+                fill="#D4AF37" stroke="#B08D57" stroke-width="1" opacity="0.8"/>
+          
+          <!-- Asia -->
+          <path d="M600 160 Q660 155 720 170 Q780 175 800 190 Q790 220 750 230 Q700 225 660 215 Q620 210 600 180 Q595 170 600 160 Z" 
+                fill="#D4AF37" stroke="#B08D57" stroke-width="1" opacity="0.8"/>
+          
+          <!-- Australia -->
+          <path d="M750 360 Q780 355 810 365 Q820 380 815 395 Q805 405 785 400 Q765 395 750 380 Q745 370 750 360 Z" 
+                fill="#D4AF37" stroke="#B08D57" stroke-width="1" opacity="0.8"/>
+          
+          <!-- Greenland -->
+          <path d="M380 120 Q400 115 420 125 Q430 140 425 155 Q415 165 395 160 Q375 155 370 140 Q375 130 380 120 Z" 
+                fill="#D4AF37" stroke="#B08D57" stroke-width="1" opacity="0.6"/>
+          
+          <!-- Antarctica -->
+          <path d="M200 450 Q400 445 600 450 Q800 455 900 460 Q850 475 650 480 Q450 485 250 480 Q150 475 200 450 Z" 
+                fill="#D4AF37" stroke="#B08D57" stroke-width="1" opacity="0.5"/>
+          
+          <!-- Major connection dots -->
+          <circle cx="220" cy="220" r="3" fill="#D4AF37" opacity="0.9">
+            <animate attributeName="r" values="3;5;3" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="520" cy="200" r="3" fill="#D4AF37" opacity="0.9">
+            <animate attributeName="r" values="3;5;3" dur="2.5s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="720" cy="180" r="3" fill="#D4AF37" opacity="0.9">
+            <animate attributeName="r" values="3;5;3" dur="3s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="520" cy="280" r="3" fill="#D4AF37" opacity="0.9">
+            <animate attributeName="r" values="3;5;3" dur="2.2s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="785" cy="380" r="3" fill="#D4AF37" opacity="0.9">
+            <animate attributeName="r" values="3;5;3" dur="2.8s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+      </div>
+      <div class="global-stats">
+        <h2>Global Presence</h2>
+        <p>Advanced tools designed to streamline global B2B partnerships across continents.</p>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number">50+</span>
+            <span class="stat-label">Countries</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">500+</span>
+            <span class="stat-label">Deals Facilitated</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing Section -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <h2>Transparent Pricing</h2>
+    <p class="subtitle">Choose the plan that fits for your businesses needs.</p>
+
+    <div class="pricing-grid">
+      <!-- Free Plan -->
+      <div class="pricing-card">
+        <h3>Free</h3>
+        <div class="price">
+          <span class="currency">$</span>
+          <span class="amount">0</span>
+          <span class="period">/month</span>
+        </div>
+        <p class="plan-desc">For exploring the platform</p>
+        <ul class="features-list">
+          <li><i class="fas fa-check"></i> AI Powered Matchmaking</li>
+          <li><i class="fas fa-check"></i> Dynamic Trust Score</li>
+          <li><i class="fas fa-check"></i> AI Matchmaking</li>
+          <li><i class="fas fa-times"></i> Limited support</li>
+        </ul>
+        <button class="pricing-btn">Get Started</button>
+      </div>
+
+      <!-- Starter Plan -->
+      <div class="pricing-card popular">
+        <div class="popular-badge">POPULAR</div>
+        <h3>Starter</h3>
+        <div class="price">
+          <span class="currency">₹</span>
+          <span class="amount">3,000</span>
+          <span class="period">/month</span>
+        </div>
+        <p class="plan-desc">For trusting expertises</p>
+        <ul class="features-list">
+          <li><i class="fas fa-check"></i> Unlimited matches</li>
+          <li><i class="fas fa-check"></i> Fitest Features</li>
+          <li><i class="fas fa-check"></i> Premium support</li>
+          <li><i class="fas fa-check"></i> Advanced smart contracts</li>
+        </ul>
+        <button class="pricing-btn primary">Get Started</button>
+      </div>
+
+      <!-- Pro Plan -->
+      <div class="pricing-card pro-plan">
+        <div class="pro-badge">✨ ENTERPRISE</div>
+        <h3>Pro</h3>
+        <div class="price">
+          <span class="currency">₹</span>
+          <span class="amount">12,000</span>
+          <span class="period">/month</span>
+        </div>
+        <p class="plan-desc">For scaling enterprises</p>
+        <ul class="features-list">
+          <li><i class="fas fa-check"></i> Everything in Starter</li>
+          <li><i class="fas fa-check"></i> Unlimited global matches</li>
+          <li><i class="fas fa-check"></i> AI-powered deal insights</li>
+          <li><i class="fas fa-check"></i> White-label solutions</li>
+          <li><i class="fas fa-check"></i> Custom API integrations</li>
+          <li><i class="fas fa-check"></i> Dedicated account manager</li>
+          <li><i class="fas fa-check"></i> Priority onboarding</li>
+          <li><i class="fas fa-check"></i> Advanced analytics dashboard</li>
+          <li><i class="fas fa-check"></i> Multi-currency support</li>
+          <li><i class="fas fa-check"></i> Custom branding options</li>
+          <li><i class="fas fa-check"></i> Enterprise-grade security</li>
+          <li><i class="fas fa-check"></i> Bulk operations & import</li>
+          <li><i class="fas fa-check"></i> Advanced reporting & BI</li>
+          <li><i class="fas fa-check"></i> SLA guarantees</li>
+          <li><i class="fas fa-check"></i> Regional compliance</li>
+          <li><i class="fas fa-check"></i> 24/7 priority support</li>
+          <li><i class="fas fa-check"></i> Phone & video support</li>
+          <li><i class="fas fa-check"></i> Training & onboarding</li>
+        </ul>
+        <button class="pricing-btn premium">Contact Sales</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="contact-content">
+      <div class="contact-form-wrapper">
+        <h2>Ready to Connect Globally?</h2>
+        <p class="contact-subtitle">Contact our team to learn how Global Client Matchmaker can transform your business partnerships.</p>
+        
+        <form class="contact-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Your email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" placeholder="Your company" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="role">Role</label>
+            <select id="role" name="role" required>
+              <option value="">Select your needs</option>
+              <option value="startup">Startup Founder</option>
+              <option value="enterprise">Enterprise Partner</option>
+              <option value="investor">Investor</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us about your partnership needs" rows="4"></textarea>
+          </div>
+          
+          <button type="submit" class="contact-btn">Send Message</button>
+        </form>
+      </div>
+      
+      <div class="contact-info">
+        <div class="globe-bg"></div>
+        <h3>Global Presence</h3>
+        <p>Advanced tools designed to streamline global B2B partnerships.</p>
+        
+        <div class="contact-stats">
+          <div class="contact-stat">
+            <span class="stat-number">10,000+</span>
+            <span class="stat-desc">Businesses Connected</span>
+          </div>
+          <div class="contact-stat">
+            <span class="stat-number">$500M+</span>
+            <span class="stat-desc">Deals Facilitated</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-column">
+              <h3><img src="/beta/logo.gif" alt="Logo" class="logo-icon" /> Globify</h3>
+      <p>AI-powered B2B matchmaking platform connecting startups with global enterprise clients.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fa fa-instagram"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-whatsapp"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-column">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Partners</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#">Documentation</a></li>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Case Studies</a></li>
+        <li><a href="#">API</a></li>
+        <li><a href="#">Community</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Security</a></li>
+        <li><a href="#">Compliance</a></li>
+        <li><a href="#">GDPR</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© Under Construction Globify. All rights reserved.</p>
+    <div class="bottom-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Interactive Globify Map Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize the interactive map
+  const map = L.map('globifyMap', {
+    center: [20, 0],
+    zoom: 2,
+    minZoom: 1.5,
+    maxZoom: 4,
+    zoomControl: true,
+    attributionControl: false
+  });
+
+  // Use dark tile layer that matches our design
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    maxZoom: 19,
+    attribution: '',
+  }).addTo(map);
+
+  // Global hub locations for Globify
+  const globalHubs = [
+    { name: "San Francisco, USA", coords: [37.7749, -122.4194], description: "Silicon Valley Tech Hub" },
+    { name: "London, UK", coords: [51.5074, -0.1278], description: "European Financial Center" },
+    { name: "Singapore", coords: [1.3521, 103.8198], description: "Asian Business Gateway" },
+    { name: "Dubai, UAE", coords: [25.2048, 55.2708], description: "Middle East Innovation Hub" },
+    { name: "Bengaluru, India", coords: [12.9716, 77.5946], description: "India's Silicon Valley" },
+    { name: "São Paulo, Brazil", coords: [-23.5505, -46.6333], description: "Latin America Business Center" },
+    { name: "Berlin, Germany", coords: [52.5200, 13.4050], description: "European Startup Hub" },
+    { name: "Tokyo, Japan", coords: [35.6762, 139.6503], description: "Asian Technology Center" }
+  ];
+
+  // Custom pulsing marker style
+  const pulseMarkerHTML = `
+    <div class="globify-pulse-marker">
+      <div class="pulse-ring"></div>
+      <div class="pulse-core"></div>
+    </div>
+  `;
+
+  // Add hub markers with custom pulsing animation
+  function addGlobifyHub(hub) {
+    const icon = L.divIcon({
+      className: 'globify-marker',
+      html: pulseMarkerHTML,
+      iconSize: [24, 24],
+      iconAnchor: [12, 12],
+    });
+    
+    const marker = L.marker(hub.coords, { icon }).addTo(map);
+    marker.bindPopup(`
+      <div class="globify-popup">
+        <strong>${hub.name}</strong><br>
+        <span>${hub.description}</span>
+      </div>
+    `, { 
+      closeButton: false,
+      className: 'globify-popup-wrapper'
+    });
+    
+    return marker;
+  }
+
+  // Create all hub markers
+  const hubMarkers = globalHubs.map(addGlobifyHub);
+
+  // Connection pairs for animated lines
+  const connections = [
+    [0, 1], // SF -> London
+    [1, 2], // London -> Singapore
+    [2, 4], // Singapore -> Bengaluru
+    [1, 6], // London -> Berlin
+    [0, 5], // SF -> São Paulo
+    [2, 7], // Singapore -> Tokyo
+    [3, 4], // Dubai -> Bengaluru
+  ];
+
+  // Create animated connection lines
+  function createGlobifyAnimatedLine(latlngs, options = {}) {
+    const polyline = L.polyline(latlngs, {
+      color: '#D4AF37',
+      weight: options.weight || 3,
+      opacity: options.opacity || 0.8,
+      className: 'globify-connection-line',
+      interactive: false
+    }).addTo(map);
+
+    // Get the SVG path element for animation
+    const path = polyline._path;
+    if (path && path.getTotalLength) {
+      const length = path.getTotalLength();
+      path.style.strokeDasharray = length + ' ' + length;
+      path.style.strokeDashoffset = length;
+
+      // Animate the line drawing
+      const duration = options.duration || 2000;
+      const start = performance.now();
+      
+      function animate(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        path.style.strokeDashoffset = length * (1 - progress);
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+
+    return polyline;
+  }
+
+  // Helper function to create curved path points
+  function createCurvedPath(start, end, numPoints = 50) {
+    const points = [];
+    for (let i = 0; i <= numPoints; i++) {
+      const t = i / numPoints;
+      // Create a slight curve by adding offset to the midpoint
+      const lat = start[0] * (1 - t) + end[0] * t + Math.sin(Math.PI * t) * 5;
+      const lng = start[1] * (1 - t) + end[1] * t;
+      points.push([lat, lng]);
+    }
+    return points;
+  }
+
+  // Animate connections with delays
+  let connectionDelay = 1000; // Start after 1 second
+  const delayBetweenConnections = 800;
+
+  connections.forEach((pair, index) => {
+    setTimeout(() => {
+      const startHub = globalHubs[pair[0]];
+      const endHub = globalHubs[pair[1]];
+      const curvedPath = createCurvedPath(startHub.coords, endHub.coords, 60);
+      
+      createGlobifyAnimatedLine(curvedPath, {
+        duration: 2500 + (index * 200),
+        weight: 2 + Math.random() * 2,
+        opacity: 0.7 + Math.random() * 0.3
+      });
+    }, connectionDelay);
+    
+    connectionDelay += delayBetweenConnections;
+  });
+
+  // Add moving shuttle animation on one connection
+  setTimeout(() => {
+    const shuttleConnection = connections[0];
+    const startHub = globalHubs[shuttleConnection[0]];
+    const endHub = globalHubs[shuttleConnection[1]];
+    const shuttlePath = createCurvedPath(startHub.coords, endHub.coords, 100);
+    
+    const shuttleIcon = L.divIcon({
+      className: 'globify-shuttle',
+      html: '<div class="shuttle-dot"></div>',
+      iconSize: [8, 8],
+      iconAnchor: [4, 4]
+    });
+    
+    const shuttle = L.marker(shuttlePath[0], { icon: shuttleIcon }).addTo(map);
+    
+    let shuttleIndex = 0;
+    function moveShuttle() {
+      if (shuttleIndex >= shuttlePath.length) shuttleIndex = 0;
+      shuttle.setLatLng(shuttlePath[shuttleIndex]);
+      shuttleIndex += 2;
+      setTimeout(moveShuttle, 100);
+    }
+    moveShuttle();
+  }, 5000);
+});
+</script>
+
+<script src="/beta/script.js"></script>
+</body>
+</html>
